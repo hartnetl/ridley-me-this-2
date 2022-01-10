@@ -39,7 +39,7 @@
 
                 <!-- add item to basket  -->
 
-                <form class="form" action="" method="POST">
+                <form class="form" action="{{ object.get_add_to_basket_url }}" method="POST">
                     {% csrf_token %}
                     <!-- form is a single row with two columns  -->
                     <div class="form-row">

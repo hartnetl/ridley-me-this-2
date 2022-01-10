@@ -48,13 +48,21 @@ class Product(models.Model):
             'slug': self.slug
         })
 
+    def get_add_to_basket_url(self):
+        return reverse("add_to_basket", kwargs={
+            'slug': self.slug
+        })
+
 
 class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.quantity} of {self.item.title}"
 
 
 class Order(models.Model):
@@ -62,7 +70,7 @@ class Order(models.Model):
                              on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     start_date = models.DateTimeField(auto_now=True)
-    auto_date = models.DateTimeField()
+    date_ordered = models.DateTimeField()
     items = models.ManyToManyField(OrderItem)
 
     def __str__(self):
