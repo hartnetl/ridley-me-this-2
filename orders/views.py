@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Product
 
 
-def view_products(request):
-    context = {
-        'products': Product.objects.all()
-    }
-    
-    return render(request, "orders/view_products.html", context)
+class productsView(ListView):
+    model = Product
+    template_name = "orders/view_products.html"
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = "orders/product_detail.html"
