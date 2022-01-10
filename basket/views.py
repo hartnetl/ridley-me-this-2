@@ -37,3 +37,25 @@ def add_to_basket(request, slug):
         order.items.add(order_item)
 
     return redirect("view_product", slug=slug)
+
+
+def delete_product_from_basket(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item__slug=product.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=product,
+                user=request.user,
+                ordered=False
+            )[0]
+            order.items.remove(order_item)
+        else:
+            # product doesn't exist in order
+            return redirect("view_product", slug=slug)
+    else:
+        # order doesn't exist
+        return redirect("view_product", slug=slug)
+
+    return redirect("view_product", slug=slug)

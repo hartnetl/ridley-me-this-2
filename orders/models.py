@@ -53,6 +53,11 @@ class Product(models.Model):
             'slug': self.slug
         })
 
+    def get_remove_from_basket_url(self):
+        return reverse("remove_from_basket", kwargs={
+            'slug': self.slug
+        })
+
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
