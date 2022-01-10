@@ -1,0 +1,43 @@
+<!-- the main-nav id matches the id of the toggle button in the base templates  -->
+<div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+
+        <!-- Home button for mobile  -->
+        <li class="nav-item d-block d-md-none">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home' %}" id="home-link">
+                Home
+            </a>
+        </li>
+
+        <!-- menu items -->
+
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                Sponsor a turtle
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                Browse Merch
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                Make a donation
+            </a>
+        </li>
+
+        <!-- About us menu  -->
+
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                About
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
+                <a href="{% url 'info' %}" class="dropdown-item">About us</a>
+                <a href="{% url 'contact' %} " class="dropdown-item">Contact</a>
+                <a href="{% url 'learn' %}" class="dropdown-item">Learn More</a>
+            </div>
+        </li>
+    </ul>
+</div>
