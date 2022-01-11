@@ -32,6 +32,7 @@ def add_to_basket(request, slug):
         else:
             order.items.add(order_item)
             messages.success(request, f'Added {product.title} to your basket')
+            return redirect("view_product", slug=slug)
     else:
     # if it doesn't exist we create a new order
         date_ordered = timezone.now()
