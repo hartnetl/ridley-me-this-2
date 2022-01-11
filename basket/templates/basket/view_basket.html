@@ -38,7 +38,11 @@
                             <th scope="row"> {{ forloop.counter }}</th>
                             <td>{{order_item.item.title}}</td>
                             <td>€{{order_item.item.price}}</td>
-                            <td>{{order_item.quantity}}</td>
+                            <td>
+                                <a href=""><i class="fas fa-minus-circle mr-2"></i></a> 
+                                {{order_item.quantity}} 
+                                <a href=""><i class="ml-2 fas fa-plus-circle"></i></a>
+                            </td>
                             <td>€{{order_item.get_total_item_price }}</td>
                           </tr>
                         {% empty %}
