@@ -43,7 +43,11 @@
                                 {{order_item.quantity}} 
                                 <a href="{% url 'increase_quantity' order_item.item.slug %}"><i class="ml-2 fas fa-plus-circle"></i></a>
                             </td>
-                            <td>€{{order_item.get_total_item_price }}</td>
+                            <td>
+                                €{{order_item.get_total_item_price }}
+                                <a href="{% url 'remove_from_basket' order_item.item.slug %}"><i class="fas fa-trash-alt float-right"></i></a> 
+                            </td>
+                            
                           </tr>
                         {% empty %}
                         <tr>

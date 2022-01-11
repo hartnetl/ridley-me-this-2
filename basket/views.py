@@ -70,7 +70,7 @@ def delete_product_from_basket(request, slug):
             )[0]
             order.items.remove(order_item)
             messages.success(request, f'Removed {product.title} from your basket')
-            return redirect("view_product", slug=slug)
+            return redirect("basket")
 
         else:
             messages.error(request, "This item wasn't in your cart")
