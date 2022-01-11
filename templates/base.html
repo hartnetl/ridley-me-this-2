@@ -1,5 +1,5 @@
+{% load basket_template_tags %}
 {% load static %}
-
 <!doctype html>
 <html lang="en">
 
@@ -115,7 +115,8 @@
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="">
                             <div class="text-center">
-                                <div><i class="fas fa-shopping-basket fa-lg"></i></div>
+                                <span class="badge red z-depth-1 mr-1"> {{ request.user|basket_item_count }}</span>
+                                <span><i class="fas fa-shopping-basket fa-lg"></i></span>
                             </div>
                             <p class="my-0">
                                 {% if grand_total %}
