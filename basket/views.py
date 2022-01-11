@@ -107,3 +107,22 @@ def decrease_quantity(request, slug):
         return redirect("view_product", slug=slug)
 
     return redirect("view_product", slug=slug)
+
+
+@login_required
+def increase_quantity(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    order_item, created = OrderItem.objects.get_or_create(
+        item=product,
+        user=request.user,
+        ordered=False
+    )
+    # check that the user hasn't already completed this order
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    order = order_qs[0]
+    if order.items.filter(item__slug=product.slug).exists():
+        order_item.quantity += 1
+        messages.success(request, f'Updated quantity of {product.title} to {order_item.quantity}')
+        order_item.save()
+        return redirect("basket")
+
