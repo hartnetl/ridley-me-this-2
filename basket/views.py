@@ -97,7 +97,7 @@ def decrease_quantity(request, slug):
             order_item.quantity -= 1
             order_item.save()
             messages.success(request, f'Reduced quantity of {product.title} to {order_item.quantity}')
-            return redirect("basket", slug=slug)
+            return redirect("basket")
 
         else:
             messages.error(request, "This item wasn't in your cart")

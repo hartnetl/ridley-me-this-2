@@ -39,7 +39,7 @@
                             <td>{{order_item.item.title}}</td>
                             <td>€{{order_item.item.price}}</td>
                             <td>
-                                <a href=""><i class="fas fa-minus-circle mr-2"></i></a> 
+                                <a href="{% url 'reduce_quantity' order_item.item.slug %}"><i class="fas fa-minus-circle mr-2"></i></a> 
                                 {{order_item.quantity}} 
                                 <a href=""><i class="ml-2 fas fa-plus-circle"></i></a>
                             </td>
