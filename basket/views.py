@@ -80,3 +80,30 @@ def delete_product_from_basket(request, slug):
         return redirect("view_product", slug=slug)
 
     return redirect("view_product", slug=slug)
+
+
+@login_required
+def decrease_quantity(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    order_qs = Order.objects.filter(user=request.user, ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item__slug=product.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=product,
+                user=request.user,
+                ordered=False
+            )[0]
+            order_item.quantity -= 1
+            order_item.save()
+            messages.success(request, f'Reduced quantity of {product.title} to {order_item.quantity}')
+            return redirect("basket", slug=slug)
+
+        else:
+            messages.error(request, "This item wasn't in your cart")
+            return redirect("view_product", slug=slug)
+    else:
+        messages.error(request, "You don't have an active order")
+        return redirect("view_product", slug=slug)
+
+    return redirect("view_product", slug=slug)
