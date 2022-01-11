@@ -55,10 +55,10 @@ def delete_product_from_basket(request, slug):
                 ordered=False
             )[0]
             order.items.remove(order_item)
-            messages.success(request, f'Removed {product.title} from your bag')
+            messages.success(request, f'Removed {product.title} from your basket')
 
         else:
-            # product doesn't exist in order
+            messages.error(request, "This item wasn't in your cart")
             return redirect("view_product", slug=slug)
     else:
         # order doesn't exist
