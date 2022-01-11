@@ -1,22 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.utils import timezone
 from django.contrib import messages
 from orders.models import Product, OrderItem, Order
 
-
-class ViewBasket(View):
+class ViewBasket(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             return render(self.request, 'basket/view_basket.html')
-            
+
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("/")
 
 
+@login_required
 def add_to_basket(request, slug):
     product = get_object_or_404(Product, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
@@ -51,6 +53,7 @@ def add_to_basket(request, slug):
     return redirect("view_product", slug=slug)
 
 
+@login_required
 def delete_product_from_basket(request, slug):
     product = get_object_or_404(Product, slug=slug)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
