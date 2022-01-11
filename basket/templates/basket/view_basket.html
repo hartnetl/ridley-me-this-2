@@ -41,7 +41,28 @@
                             <td>{{order_item.quantity}}</td>
                             <td>€{{order_item.get_total_item_price }}</td>
                           </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">Your cart is empty</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>
+                            </td>
+                        </tr>
                         {% endfor %}
+                        {% if object.get_total %}
+                        <tr>
+                            <td colspan="4"><strong>Order Total</strong></td>
+                            <td>€{{object.get_total}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <a href="" class="btn btn-success">Checkout</a>
+                                <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>
+                            </td>
+                        </tr>
+                        {% endif %}
                         </tbody>
                     </table>
                   </div>

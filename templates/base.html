@@ -119,10 +119,10 @@
                                 <span><i class="fas fa-shopping-basket fa-lg"></i></span>
                             </div>
                             <p class="my-0">
-                                {% if grand_total %}
-                                ${{ grand_total|floatformat:2 }}
+                                {% if object.get_total %}
+                                    €{{object.get_total}}
                                 {% else %}
-                                $0.00
+                                    €0.00
                                 {% endif %}
                             </p>
                         </a>
