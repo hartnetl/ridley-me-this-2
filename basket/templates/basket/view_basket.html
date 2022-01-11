@@ -22,7 +22,30 @@
 
         <div class="row">
             <div class="col">
-                {% if bag_items %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for order_item in object.items.all %}
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>{{order_item.item.title}}</td>
+                            <td>{{order_item.item.price}}</td>
+                            <td>{{order_item.quantity}}</td>
+                            <td>price</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                  </div>
+                {% if basket_items %}
                 {{ basket_items }}
                 {% endif %}
             </div>  

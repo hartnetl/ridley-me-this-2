@@ -1,13 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView
+from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import View
 from django.utils import timezone
 from django.contrib import messages
 from orders.models import Product, OrderItem, Order
 
 
-class ViewBasket(TemplateView):
-    model = OrderItem
-    template_name = "basket/view_basket.html"
+class ViewBasket(View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            return render(self.request, 'basket/view_basket.html')
+            
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("/")
 
 
 def add_to_basket(request, slug):
