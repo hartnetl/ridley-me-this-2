@@ -59,6 +59,7 @@ def order_summary(request):
 
 
 class PaymentView(View):
-    
+    """ A view to return the payment page """
+
     def get(self, *args, **kwargs):
         return render(self.request, 'checkout/payment.html')
