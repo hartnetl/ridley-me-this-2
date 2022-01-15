@@ -101,3 +101,8 @@
     </div>
 </div>
 {% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'orders/includes/quantity_input_script.html' %}
+{% endblock %}
