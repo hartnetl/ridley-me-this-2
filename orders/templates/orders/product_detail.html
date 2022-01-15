@@ -39,7 +39,7 @@
 
                 <!-- add item to basket  -->
 
-                <form class="form" action="{{ object.get_add_to_basket_url }}" method="POST">
+                <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST">
                     {% csrf_token %}
                     <!-- form is a single row with two columns  -->
                     <div class="form-row">
@@ -91,7 +91,7 @@
                                 <span class="text-uppercase">Browse merch</span>
                             </a>
                             <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Basket">
-                            <a href="{{ object.get_remove_from_basket_url }}" class="btn btn-black rounded-0 text-uppercase mt-5">Remove from basket</a>
+                            <a href="" class="btn btn-black rounded-0 text-uppercase mt-5">Remove from basket</a>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
