@@ -56,3 +56,9 @@ def order_summary(request):
     """ A view to return a summary of the basket for the checkout page """
 
     return render(request, 'checkout/order_summary.html')
+
+
+class PaymentView(View):
+    
+    def get(self, *args, **kwargs):
+        return render(self.request, 'checkout/payment.html')
