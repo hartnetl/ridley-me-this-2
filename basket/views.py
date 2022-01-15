@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.contrib import messages
 from orders.models import Product, OrderItem, Order
 
+
 class ViewBasket(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         try:
@@ -32,7 +33,7 @@ def add_to_basket(request, slug):
     # check that the user hasn't already completed this order
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
-    # it exists so we're updating the order
+        # it exists so we're updating the order
         order = order_qs[0]
         # check if the order item is in the order
         # if it is, update the quantity
@@ -46,7 +47,7 @@ def add_to_basket(request, slug):
             messages.success(request, f'Added {product.title} to your basket')
             return redirect("view_product", slug=slug)
     else:
-    # if it doesn't exist we create a new order
+        # if it doesn't exist we create a new order
         date_ordered = timezone.now()
         order = Order.objects.create(
             user=request.user, date_ordered=date_ordered)
@@ -94,7 +95,7 @@ def decrease_quantity(request, slug):
                 user=request.user,
                 ordered=False
             )[0]
-            
+
             if order_item.quantity > 1:
                 order_item.quantity -= 1
                 order_item.save()
@@ -131,4 +132,3 @@ def increase_quantity(request, slug):
         messages.success(request, f'Updated quantity of {product.title} to {order_item.quantity}')
         order_item.save()
         return redirect("basket")
-
