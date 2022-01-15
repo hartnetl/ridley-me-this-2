@@ -65,6 +65,11 @@
                             <td>€{{object.get_total}}</td>
                         </tr>
                         <tr>
+                            <td colspan="4"><strong>Total + Delivery</strong></td>
+                            <td>€{{object.update_total}}</td>
+                        </tr>
+
+                        <tr>
                             <td colspan="5">
                                 <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
                                 <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>

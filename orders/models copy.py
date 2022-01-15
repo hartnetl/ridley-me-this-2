@@ -68,7 +68,6 @@ class OrderItem(models.Model):
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     ordered = models.BooleanField(default=False)
-    orderitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, editable=False)
 
     def __str__(self):
         return f"{self.quantity} of {self.item.title}"
@@ -78,10 +77,6 @@ class OrderItem(models.Model):
 
     def get_grand_total(self):
         return self.get_total_item_price()
-
-    def save(self, *args, **kwargs):
-        self.orderitem_total = self.item.price * self.quantity
-        super().save(*args, **kwargs)
 
 
 class Order(models.Model):
@@ -101,8 +96,6 @@ class Order(models.Model):
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=True, default=0)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
 
     def _generate_order_number(self):
         """
@@ -117,12 +110,6 @@ class Order(models.Model):
             self.order_total += order_item.get_grand_total()
             self.save()
         return self.order_total
-
-    def update_total(self):
-        self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
-        self.grand_total = self.order_total + self.delivery_cost
-        self.save()
-        return self.grand_total
 
     # override default save method 
     def save(self, *args, **kwargs):

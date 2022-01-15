@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import stripe
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*bvb1urf!#-f&ajdx)tf1sq#=t_7%h2qel-b_x2bx*lxh(66gw'
+
+stripe.api_key = 'sk_test_51K1HPjFEToCWPRVcmmrRxsCjJKuU0l7R9t0v452RamNdTcNkVQtWBSV7PXSSCFQJxCP26LSZ1ThBMfxvBqBdzcxb00sCw4NGpr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -173,3 +176,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Stripe
+
+STANDARD_DELIVERY_PERCENTAGE = 5
+STRIPE_CURRENCY = 'usd'

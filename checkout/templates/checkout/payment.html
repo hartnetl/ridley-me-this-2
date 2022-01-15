@@ -22,23 +22,10 @@
         <div class="col-md-12 mb-4">
             <div class="card">
 
-                <div class="Box-root Box-background--offset Flex-flex Flex-alignItems--flexStart Flex-justifyContent--center"
-                    style="min-height: 500px;">
-                    <div dir="ltr" class="PaymentElement-demo Box-root Margin-vertical--64 Padding-all--12"
-                        style="max-width: 490px; flex-basis: 100%;">
-                        <div class="StripeElement">
-                            <div class="__PrivateStripeElement"
-                                style="margin: 0px !important; padding: 0px !important; border: none !important; display: block !important; background: transparent !important; position: relative !important; opacity: 1 !important;">
-                                <iframe name="__privateStripeFrame12215" frameborder="0" allowtransparency="true"
-                                    scrolling="no" allow="payment *"
-                                    src="https://js.stripe.com/v3/elements-inner-payment-91a2f3e607343e9a0a45b066570a987a.html#locale=en&amp;wait=false&amp;rtl=false&amp;publicOptions[business][name]=Stripe+Payment+Element+Demo&amp;componentName=payment&amp;keyMode=test&amp;apiKey=pk_test_Sds05L2renhqjHCunKB9i5i2&amp;referrer=https%3A%2F%2Fstripe.com%2Fdocs%2Fpayments%2Fpayment-element&amp;controllerId=__privateStripeController12210"
-                                    title="Secure payment input frame"
-                                    style="border: none !important; margin: -4px; padding: 0px !important; width: calc(100% + 8px); min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; transform: translate(0px) !important; height: 303.344px; transition: height 0.35s ease 0s;"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              <form action="/create-checkout-session" method="POST">
+                  <button type="submit">Checkout</button>
+              </form>
+                
             </div>
         </div>
     </div>
