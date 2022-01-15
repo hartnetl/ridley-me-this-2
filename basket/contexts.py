@@ -31,21 +31,6 @@ def basket_contents(request):
             'product': product,
         })
 
-    #     # execute this one if size is supplied
-    #     else:
-    #         product = get_object_or_404(Product, pk=item_id)
-    #         # iterate through inner dictionary of items by size
-    #         for size, quantity in item_data['items_by_size'].items():
-    #             # increment items accordingly
-    #             total += quantity * product.price
-    #             product_count += quantity
-    #             bag_items.append({
-    #                 'item_id': item_id,
-    #                 'quantity': quantity,
-    #                 'product': product,
-    #                 'size': size,
-    #             })
-
     delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
     grand_total = delivery + total
 
