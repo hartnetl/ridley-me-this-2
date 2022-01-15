@@ -9,13 +9,13 @@ from orders.models import Order
 
 
 class Checkout(View):
-    """ A view to return the checkout page """
+    """ A view to return the checkout form page """
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {
             'form': form
         }
-        return render(self.request, 'checkout/checkout.html', context)
+        return render(self.request, 'checkout/checkout_form.html', context)
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
