@@ -8,14 +8,29 @@ from checkout.models import Address
 from orders.models import Order
 
 
+def checkout(request):
+    basket = request.session.get('basket', {})
+    if not basket:
+        messages.error(request, "There's nothing in your basket at the moment")
+        return redirect(reverse('products'))
+    
+    order_form = OrderForm()
+    template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form
+    }
+
+    return render(request, template, context)
+
+
 class Checkout(View):
     """ A view to return the checkout form page """
     def get(self, *args, **kwargs):
-        form = OrderForm()
+        form = CheckoutForm()
         context = {
             'form': form
         }
-        return render(self.request, 'checkout/orderform.html', context)
+        return render(self.request, 'checkout/checkout_form.html', context)
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
