@@ -17,6 +17,7 @@ class CheckoutForm(forms.Form):
         widget=CountrySelectWidget(attrs={
             'class': 'custom-select d-block w-100',
         }))
+    # shipping_country = CountryField(blank_label='(select country)')
     shipping_zip = forms.CharField(required=False)
 
     billing_address = forms.CharField(required=False)
