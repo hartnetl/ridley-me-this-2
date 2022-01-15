@@ -1,5 +1,5 @@
+{% load basket_template_tags %}
 {% load static %}
-
 <!doctype html>
 <html lang="en">
 
@@ -113,16 +113,17 @@
                     <!-- Shopping Basket  -->
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                            href="">
+                            href="{% url 'basket' %}">
                             <div class="text-center">
-                                <div><i class="fas fa-shopping-basket fa-lg"></i></div>
+                                <span class="badge red z-depth-1 mr-1"> {{ request.user|basket_item_count }}</span>
+                                <span><i class="fas fa-shopping-basket fa-lg"></i></span>
                             </div>
                             <p class="my-0">
-                                {% if grand_total %}
-                                ${{ grand_total|floatformat:2 }}
-                                {% else %}
-                                $0.00
-                                {% endif %}
+                                { % if object.update_total % }
+                                    €{ {object.update_total} }
+                                { % else % }
+                                    €0.00
+                                { % endif % }
                             </p>
                         </a>
                     </li>
