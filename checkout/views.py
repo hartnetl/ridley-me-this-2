@@ -1,14 +1,23 @@
 from django.shortcuts import render
 from .forms import CheckoutForm
+from django.views.generic import View
 
 
-def checkout(request):
+class Checkout(View):
     """ A view to return the checkout page """
+    def get(self, *args, **kwargs):
+        form = CheckoutForm()
+        context = {
+            'form': form
+        }
+        return render(self.request, 'checkout/checkout.html', context)
 
-    context = {}
-    context['form']=CheckoutForm()
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        if form.is_valid():
+            print('the form is valid')
+            return redirect('checkout')
 
-    return render(request, 'checkout/checkout.html', context)
 
 
 def order_summary(request):
