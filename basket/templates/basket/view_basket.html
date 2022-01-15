@@ -59,14 +59,14 @@
                             </td>
                         </tr>
                         {% endfor %}
-                        {% if object.get_total %}
+                        { % if object.get_total % }
                         <tr>
                             <td colspan="4"><strong>Order Total</strong></td>
-                            <td>€{{object.get_total}}</td>
+                            <td>€{ {object.get_total} }</td>
                         </tr>
                         <tr>
                             <td colspan="4"><strong>Total + Delivery</strong></td>
-                            <td>€{{object.update_total}}</td>
+                            <td>€{ {object.update_total} }</td>
                         </tr>
 
                         <tr>
@@ -75,7 +75,7 @@
                                 <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>
                             </td>
                         </tr>
-                        {% endif %}
+                        { % endif % }
                         </tbody>
                     </table>
                   </div>
