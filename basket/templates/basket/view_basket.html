@@ -22,70 +22,18 @@
 
         <div class="row">
             <div class="col">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Product name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total price</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {% for order_item in object.items.all %}
-                          <tr>
-                            <th scope="row"> {{ forloop.counter }}</th>
-                            <td>{{order_item.item.title}}</td>
-                            <td>€{{order_item.item.price}}</td>
-                            <td>
-                                <a href="{% url 'reduce_quantity' order_item.item.slug %}"><i class="fas fa-minus-circle mr-2"></i></a> 
-                                {{order_item.quantity}} 
-                                <a href="{% url 'increase_quantity' order_item.item.slug %}"><i class="ml-2 fas fa-plus-circle"></i></a>
-                            </td>
-                            <td>
-                                €{{order_item.get_total_item_price }}
-                                <a href="{% url 'remove_from_basket' order_item.item.slug %}"><i class="fas fa-trash-alt float-right"></i></a> 
-                            </td>
-                            
-                          </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="5">Your cart is empty</td>
-                        </tr>
-                        <tr>
-                            <td colspan="5">
-                                <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-
-                        { % if order_total % }
-                        <tr>
-                            <td colspan="4"><strong>Order Total</strong></td>
-                            <!-- <td>€{ {object.get_total} }</td> -->
-                            <td>€{{object.order_total}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4"><strong>Total + Delivery</strong></td>
-                            <!-- <td>€{ {object.update_total} }</td> -->
-                            <td>€{{ object.grand_total }}</td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="5">
-                                <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
-                                <a href="{% url 'products' %}" class="btn btn-warning"> Find a turtle</a>
-                            </td>
-                        </tr>
-                        { % endif % }
-                        </tbody>
-                    </table>
-                  </div>
-                {% if basket_items %}
-                {{ basket_items }}
+                {% if bag_items %}
+                    <div class="table-responsive rounded"></div>
+                {% else %}
+                    <p class="lead mb-5">Your bag is empty.</p>
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Sponsor a turtle</span>
+                    </a>
                 {% endif %}
-            </div>  
+            </div>
         </div>
     </div>
 {% endblock %}
