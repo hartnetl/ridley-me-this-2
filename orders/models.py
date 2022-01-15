@@ -114,7 +114,11 @@ class Order(models.Model):
     def get_total(self):
         self.order_total = 0
         for order_item in self.items.all():
+            print('order items:')
+            print(order_item)
             self.order_total += order_item.get_grand_total()
+            print('order_total:')
+            print(order_total)
             self.save()
         return self.order_total
 
