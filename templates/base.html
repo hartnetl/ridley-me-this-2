@@ -114,7 +114,7 @@
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="{% url 'basket' %}">
                             <div class="text-center">
-                                <span class="badge red z-depth-1 mr-1"> {{ request.user|basket_item_count }}</span>
+                                <span class="badge red z-depth-1 mr-1"> {{ product_count }}</span>
                                 <span><i class="fas fa-shopping-basket fa-lg"></i></span>
                             </div>
                             <p class="my-0">

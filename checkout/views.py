@@ -3,27 +3,24 @@ from django.contrib import messages
 from django.views.generic import View
 from django.core.exceptions import ObjectDoesNotExist
 
-from .forms import CheckoutForm, OrderForm
+from .forms import OrderForm
 from checkout.models import Address
 from orders.models import Order
 
 
-class checkout(View):
-    def get(self, *args, **kwargs):
-        try:
-            order = Order.objects.get(user=self.request.user, ordered=False)
-            order_form = OrderForm()
-            template = 'checkout/checkout.html'
-            context = {
-                'order_form': order_form,
-                'basket_items': order,
-            }
-            return render(self.request, template, context)
-        
-        except ObjectDoesNotExist:
-            messages.error(self.request, "Your basket is empty")
-            return redirect("products")
+def checkout(request):
+    basket = request.session.get('basket', {})
+    if not basket:
+        messages.error(request, "There's nothing in your basket at the moment")
+        return redirect(reverse('products'))
 
+    order_form = OrderForm()
+    template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form
+    }
+
+    return render(request, template, context)
 
 class Checkout(View):
     """ A view to return the checkout form page """
