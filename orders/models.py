@@ -102,7 +102,7 @@ class Order(models.Model):
     #     return self.order_total
 
     def update_total(self):
-        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum']
+        self.order_total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
         self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
