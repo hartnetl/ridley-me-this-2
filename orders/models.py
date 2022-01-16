@@ -83,6 +83,10 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    # text field that will contain the original shopping bag that created it
+    original_basket = models.TextField(null=False, blank=False, default='')
+    # character field that will contain the unique stripe payment intent id
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
