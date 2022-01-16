@@ -11,26 +11,30 @@ class StripeWH_Handler:
         Handle a generic/unknown/unexpected webhook event
         """
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
+            content=f'Unhandled webhook received: {event["type"]}',
             status=200)
 
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        intent = event.data.object
-        pid = intent.id
-        bag = intent.metadata.bag
-        save_info = intent.metadata.save_info
+        # intent = event.data.object
+        # pid = intent.id
+        # bag = intent.metadata.bag
+        # save_info = intent.metadata.save_info
 
-        billing_details = intent.charges.data[0].billing_details
-        shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        # billing_details = intent.charges.data[0].billing_details
+        # shipping_details = intent.shipping
+        # grand_total = round(intent.charges.data[0].amount / 100, 2)
+
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]}',
+            status=200)
 
         # Clean data in the shipping details
-        for field, value in shipping_details.address.items():
-            if value == "":
-                shipping_details.address[field] = None
+        # for field, value in shipping_details.address.items():
+        #     if value == "":
+        #         shipping_details.address[field] = None
 
     def handle_payment_intent_payment_failed(self, event):
         """
