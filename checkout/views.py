@@ -9,6 +9,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import OrderForm
 from orders.models import Order, OrderItem, Product
 from basket.contexts import basket_contents
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 
 
 # handle if user wants their details saved 
@@ -21,8 +23,8 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         # Set up modification of pid
         stripe.PaymentIntent.modify(pid, metadata={
-            # this is what we want to change: 
-            # json dump of their shopping bag
+            # this is what we want to change:
+            # json dump of their shopping basket
             'basket': json.dumps(request.session.get('basket', {})),
             # if they want to save their info
             'save_info': request.POST.get('save_info'),
@@ -138,6 +140,36 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     # get order created in previous view 
     order = get_object_or_404(Order, order_number=order_number)
+
+    # We already know the form has been submitted and the order has been
+    # successfully processed at this point, so this is a good place to add the
+    # user profile to it.
+    if request.user.is_authenticated:
+        # get the user's profile
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        # save it 
+        order.save()
+
+        # Save the user's info if box was checked
+        if save_info:
+            profile_data = {
+                # these keys match the user profile model 
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_town_or_city': order.town_or_city,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+            }
+            # Create an instance of the user profile form using the profile 
+            # data, telling it we're going to update the profile we've obtained above.
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            # if the form is valid, save it
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

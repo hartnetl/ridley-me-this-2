@@ -67,7 +67,7 @@
                                         <!-- unordered, unstyled list  -->
                                         <ul class="list-unstyled">
                                             <!-- For each item in the orders list of line-items  -->
-                                            {% for item in order.lineitems.all %}
+                                            {% for item in order.orderitems.all %}
                                                 <li class="small">
                                                     <!-- product name and quantity  -->
                                                     {{ item.product.title }} x{{ item.quantity }}

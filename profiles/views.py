@@ -27,28 +27,30 @@ def order_history(request, order_number):
 
 def profile(request):
     """ Display the user's profile. """
-
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    # POST REQUEST HANDLER
     if request.method == 'POST':
+        # Create a new instance of the user profile form using the post data
+        # and tell it the instance we're updating is the profile we've just
+        # retrieved above.
         form = UserProfileForm(request.POST, instance=profile)
+        # Then if the form is valid, save it and add a success message.
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
-
-    # GET REQUEST HANDLER 
+            messages.error(request,
+                           'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
-        orders = profile.orders.all()
-        template = 'profiles/profile.html'
-        context = {
-            'profile': profile,
-            'form': form,
-            'orders': orders,
-            'on_profile_page': True
-        }
+    orders = profile.orders.all()
+
+    template = 'profiles/profile.html'
+    context = {
+        'form': form,
+        'orders': orders,
+        'on_profile_page': True
+    }
 
     return render(request, template, context)
+
