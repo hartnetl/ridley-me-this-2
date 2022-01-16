@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from .models import Product
 from .forms import ProductForm
 
@@ -14,12 +17,16 @@ class ProductDetailView(DetailView):
     template_name = "orders/product_detail.html"
 
 
-def add_product(request):
-    """ Add a product to the store """
-    form = ProductForm()
-    template = 'orders/add_product.html'
-    context = {
-        'form': form,
-    }
+class AddProduct(SuccessMessageMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'orders/add_product.html'
+    success_message = "Successfully added '%(title)s'"
 
-    return render(request, template, context)
+    def get_success_url(self):
+        return reverse('view_product', kwargs={'slug': self.object.slug})
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        print(form.cleaned_data)
+        return super().form_valid(form)
