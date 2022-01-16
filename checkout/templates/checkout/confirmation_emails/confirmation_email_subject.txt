@@ -1,0 +1,1 @@
+Ridley-Me-This email confirmation for Order Number {{ order.order_number }}
