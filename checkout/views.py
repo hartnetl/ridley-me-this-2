@@ -1,5 +1,6 @@
 import stripe
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -8,6 +9,30 @@ from .forms import OrderForm
 from orders.models import Order, OrderItem, Product
 from basket.contexts import basket_contents
 
+
+# handle if user wants their details saved 
+@require_POST
+def cache_checkout_data(request):
+    try:
+        # make post request, give it the scret id, split it to get the payment intent id only
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        # Set up stripe with the secret key to modify the payment intent
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        # Set up modification of pid
+        stripe.PaymentIntent.modify(pid, metadata={
+            # this is what we want to change: 
+            # json dump of their shopping bag
+            'basket': json.dumps(request.session.get('basket', {})),
+            # if they want to save their info
+            'save_info': request.POST.get('save_info'),
+            # user placing the order
+            'username': request.user,
+        }) 
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 def checkout(request):
     # for the payment intent
