@@ -114,9 +114,8 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        # pre-fill user details on checkout 
+    # pre-fill user details on checkout 
 
-    # if user is authenticated
     if request.user.is_authenticated:
         try:
             # get their profile
