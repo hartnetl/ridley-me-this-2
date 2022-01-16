@@ -1,10 +1,11 @@
+import uuid
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
 from django.db.models import Sum
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
-import uuid
+from profiles.models import UserProfile
 
 SPECIES = [
         ('logger', 'Loggerhead'),
@@ -70,6 +71,8 @@ class Order(models.Model):
     # start_date = models.DateTimeField(auto_now=True)
     # date_ordered = models.DateTimeField()
     # items = models.ManyToManyField(OrderItem)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
