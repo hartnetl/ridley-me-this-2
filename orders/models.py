@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
+from django.db.models import Sum
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 import uuid
@@ -132,5 +133,5 @@ class OrderItem(models.Model):
     #     return self.get_total_item_price()
 
     def save(self, *args, **kwargs):
-        self.orderitem_total = self.item.price * self.quantity
+        self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
