@@ -114,22 +114,44 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
+        # pre-fill user details on checkout 
+
+    # if user is authenticated
+    if request.user.is_authenticated:
+        try:
+            # get their profile
+            profile = UserProfile.objects.get(user=request.user)
+            # use initial to pre-fill the fields 
+            order_form = OrderForm(initial={
+                'full_name': profile.user.get_full_name(),
+                'email': profile.user.email,
+                'phone_number': profile.default_phone_number,
+                'country': profile.default_country,
+                'postcode': profile.default_postcode,
+                'town_or_city': profile.default_town_or_city,
+                'street_address1': profile.default_street_address1,
+                'street_address2': profile.default_street_address2,
+            })
+        # if user is not authenticated, render a blank form 
+        except UserProfile.DoesNotExist:
+            order_form = OrderForm()
+    else:
         # create empty instance of order form
         order_form = OrderForm()
 
-        # message incase you forget to set secret key
-        if not stripe_public_key:
-            messages.warning(request, 'Stripe public key is missing. \
-                Did you forget to set it in your environment?')
+    # message incase you forget to set secret key
+    if not stripe_public_key:
+        messages.warning(request, 'Stripe public key is missing. \
+            Did you forget to set it in your environment?')
 
-        template = 'checkout/checkout.html'
-        context = {
-            'order_form': order_form,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret,
-        }
+    template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
 
-        return render(request, template, context)
+    return render(request, template, context)
 
 
 def checkout_success(request, order_number):
