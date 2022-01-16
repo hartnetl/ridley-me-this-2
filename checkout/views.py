@@ -1,5 +1,5 @@
 import stripe
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 from django.views.generic import View
@@ -148,3 +148,27 @@ class PaymentView(View):
 
     def get(self, *args, **kwargs):
         return render(self.request, 'checkout/payment.html')
+
+
+def checkout_success(request, order_number):
+    """
+    Handle successful checkouts
+    """
+    # check if user wanted to save their info 
+    save_info = request.session.get('save_info')
+    # get order created in previous view 
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
+
+    # delete user's shopping bag
+    if 'basket' in request.session:
+        del request.session['basket']
+
+    template = 'checkout/checkout_success.html'
+    context = {
+      'order': order,
+    }
+
+    return render(request, template, context)
