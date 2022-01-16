@@ -68,7 +68,7 @@
 
                     <!-- We need a for loop to make a new line for each item in the order  -->
                     <!-- lineitems here comes from the related_name attribute on the order field od the orderlineitem model  -->
-                    {% for item in order.lineitems.all %}
+                    {% for item in order.orderitems.all %}
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="small mb-0 text-black font-weight-bold">
