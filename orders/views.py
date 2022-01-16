@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -11,10 +11,17 @@ from .forms import ProductForm
 
 class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
+    # Help with these functions
+    # https://stackoverflow.com/questions/59630997/correct-implementation-of-userpassestestmixin-or-accessmixin-in-class-based-view 
+
     def test_func(self):
         return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        messages.error(self.request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
-        
+
 class productsView(ListView):
     model = Product
     template_name = "orders/view_products.html"
