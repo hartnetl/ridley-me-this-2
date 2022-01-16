@@ -60,13 +60,13 @@
                                         <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
                                         <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
 
-
                                         {% if request.user.is_superuser %}
-                                        <small class="ml-3">
-                                            <a href=" ">Edit</a> |
-                                            <a class="text-danger" href=" ">Delete</a>
-                                        </small>
+                                            <small class="ml-3">
+                                                <a href="{% url 'edit_product' product.slug %}">Edit</a> | 
+                                                <a class="text-danger" href="{% url 'delete_product' product.slug %}">Delete</a>
+                                            </small>
                                         {% endif %}
+                                        
                                     </div>
                                 </div>
                             </div>

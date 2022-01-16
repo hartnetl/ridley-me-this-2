@@ -76,6 +76,15 @@
                             </div>
                         </div>
 
+                        <div>
+                            {% if request.user.is_superuser %}
+                                <small class="ml-3">
+                                    <a href="{% url 'edit_product' product.slug %}">Edit</a> | 
+                                    <a class="text-danger" href="{% url 'delete_product' product.slug %}">Delete</a>
+                                </small>
+                            {% endif %}
+                        </div>
+
                         <!-- col 2 = submit button + return shopping button -->
                         <div class="col">
                             <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
