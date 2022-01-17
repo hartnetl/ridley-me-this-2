@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # info grabbed from order model - made default and optional
     default_full_name = models.CharField(max_length=50, null=True, blank=True)
-    default_email = models.EmailField(mac_length=200, null=True, blank=True)
+    default_email = models.EmailField(max_length=200, null=True, blank=True)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
     default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
     default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
