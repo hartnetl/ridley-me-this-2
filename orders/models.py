@@ -65,19 +65,13 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    # user = models.ForeignKey(settings.AUTH_USER_MODEL,
-    #                          on_delete=models.CASCADE)
-    # ordered = models.BooleanField(default=False)
-    # start_date = models.DateTimeField(auto_now=True)
-    # date_ordered = models.DateTimeField()
-    # items = models.ManyToManyField(OrderItem)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
     order_number = models.CharField(max_length=32, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(blank_label='Choose country *', null=False, blank=False)
+    country = CountryField(blank_label='Choose country *', null=False, blank=False, max_length=100)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)

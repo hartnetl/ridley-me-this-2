@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='country',
-            field=django_countries.fields.CountryField(default='blank_label', max_length=2),
+            field=django_countries.fields.CountryField(default='blank_label', max_length=200),
         ),
         migrations.AddField(
             model_name='order',
