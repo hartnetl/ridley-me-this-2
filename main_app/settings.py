@@ -33,7 +33,7 @@ stripe.api_key = 'sk_test_51K1HPjFEToCWPRVcmmrRxsCjJKuU0l7R9t0v452RamNdTcNkVQtWB
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ridley-me-this-app.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['ridley-me-this-app.herokuapp.com', 'localhost']
 
 
 # Application definition
