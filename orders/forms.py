@@ -1,6 +1,6 @@
 from django import forms
 from .widgets import CustomClearableFileInput
-from .models import Product, Category
+from .models import Product, Category, Turtles
 
 
 class ProductForm(forms.ModelForm):
@@ -26,3 +26,9 @@ class ProductForm(forms.ModelForm):
         # Add style classes to all fields
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class TurtleForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
