@@ -74,7 +74,8 @@ def checkout(request):
                         product=product,
                         quantity=item_data,
                     )
-                    order_item.save()
+                    product.turtle.sponsored_status=True
+                    product.turtle.save()
     
                 # on the off chance a product isn't found 
                 except Product.DoesNotExist:
@@ -161,6 +162,7 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     # get order created in previous view 
     order = get_object_or_404(Order, order_number=order_number)
+
 
     # We already know the form has been submitted and the order has been
     # successfully processed at this point, so this is a good place to add the
