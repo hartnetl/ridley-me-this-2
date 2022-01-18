@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Order, OrderItem, Category
+from .models import Product, Order, OrderItem, Category, Turtles
 
 
 class OrderItemAdminInline(admin.TabularInline):
@@ -7,6 +7,8 @@ class OrderItemAdminInline(admin.TabularInline):
     model = OrderItem
     readonly_fields = ('orderitem_total',)
 
+class TurtlesAdmin(admin.StackedInline):
+    model = Turtles
 
 class OrderAdmin(admin.ModelAdmin):
 
@@ -17,7 +19,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     fields = ('order_number','user_profile', 'date', 'full_name', 'email', 'phone_number',
               'country', 'postcode', 'town_or_city', 'street_address1',
-              'street_address2', 'county', 'delivery_cost',
+              'street_address2', 'delivery_cost',
               'order_total', 'grand_total', 'original_basket', 'stripe_pid')
 
     list_display = ('order_number', 'date', 'full_name',
@@ -25,7 +27,15 @@ class OrderAdmin(admin.ModelAdmin):
                     'grand_total',)
 
 
-admin.site.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+
+    inlines = (TurtlesAdmin,)
+
+    list_display = ('title', 'category', 'price', )
+
+
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
 # admin.site.register(OrderItem)
 admin.site.register(Category)
+admin.site.register(Turtles)

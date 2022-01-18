@@ -68,3 +68,4 @@ def delete_product(request, slug):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+    order = models.ForeignKey(Order, null=True, blank=True, on_delete=models.CASCADE, related_name='orderitems')

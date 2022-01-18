@@ -43,7 +43,8 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     slug = models.SlugField()
-    species = models.CharField(choices=SPECIES, max_length=10, null=True, blank=True)
+    # species = models.CharField(choices=SPECIES, max_length=10, null=True, blank=True)
+    # sponsored_status = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -136,3 +137,10 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
+
+
+class Turtles(models.Model):
+    product = models.OneToOneField(Product, null=True, blank=True, on_delete=models.CASCADE, related_name='turtle')
+    sponsored_status = models.BooleanField(default=False, null=True, blank=True)
+    species = models.CharField(choices=SPECIES, max_length=10, null=True, blank=True)
+
