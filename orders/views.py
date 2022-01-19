@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, TurtleForm
+from .formset import TurtleFormset
 
 
 class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -32,19 +33,45 @@ class ProductDetailView(DetailView):
     template_name = "orders/product_detail.html"
 
 
-class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Product
-    form_class = ProductForm
-    template_name = 'orders/add_product.html'
-    success_message = "Successfully added '%(title)s'"
+@login_required
+def AddProduct(request):
+    product_form = ProductForm()
+    turtle_details_formset = TurtleFormset()
 
-    def get_success_url(self):
-        return reverse('view_product', kwargs={'slug': self.object.slug})
+    if request.method == 'POST':
+        product_form = ProductForm(request.POST)
 
-    def form_valid(self, form):
-        form.instance.creator = self.request.user
-        print(form.cleaned_data)
-        return super().form_valid(form)
+        if product_form.is_valid():
+            product = product_form.save(commit=False)
+            turtle_details_formset = TurtleFormset(request.POST, instance=product)
+
+            if turtle_details_formset.is_valid():
+                product_form.save()
+                turtle_details_formset.save()
+                return redirect('products')
+            else:
+                turtle_details_formset = TurtleFormset(request.POST)
+
+    context = {
+        'product_form': product_form,
+        'turtle_details_form': turtle_details_formset
+    }
+    return render(request, 'orders/add_product.html', context=context)
+
+
+# class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
+#     model = Product
+#     form_class = ProductForm
+#     template_name = 'orders/add_product.html'
+#     success_message = "Successfully added '%(title)s'"
+
+#     def get_success_url(self):
+#         return reverse('view_product', kwargs={'slug': self.object.slug})
+
+#     def form_valid(self, form):
+#         form.instance.creator = self.request.user
+#         print(form.cleaned_data)
+#         return super().form_valid(form)
 
 
 class EditProduct(SuperUserRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -68,4 +95,3 @@ def delete_product(request, slug):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
-    order = models.ForeignKey(Order, null=True, blank=True, on_delete=models.CASCADE, related_name='orderitems')

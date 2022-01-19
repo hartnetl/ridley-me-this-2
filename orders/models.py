@@ -126,7 +126,7 @@ class OrderItem(models.Model):
     orderitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, editable=False)
 
     def __str__(self):
-        return f"{self.quantity} of {self.item.title}"
+        return f'SKU {self.product.sku} on order {self.order.order_number}'
 
     # def get_total_item_price(self):
     #     return self.quantity * self.item.price

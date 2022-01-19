@@ -31,7 +31,9 @@
             <!-- You need the enctype (encoding) to properly handle images  -->
             <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form | crispy }}
+                {{ product_form | crispy }}
+                <!-- | crispy  -->
+                {{ turtle_details_form | crispy }}
                 <!-- form buttons  -->
                 <div class="text-right">
                     <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
