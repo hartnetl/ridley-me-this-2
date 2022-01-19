@@ -24,12 +24,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <a href="{% url 'products' %}?sort=price&direction=asc">Sort by lowest price</a><br>
-            <a href="{% url 'products' %}?sort=price&direction=desc">Sort by highest price</a>
-        </div>
-    </div>
     <!-- Products row  -->
     <div class="row">
         <!-- This row has 2 rows  -->
@@ -40,17 +34,64 @@
             <div class="row mt-1 mb-2">
                 <div class="product-container col-10 offset-1">
                     <div class="row mt-1 mb-2">
+                        <!-- sort select is on top on mobile, but last for medium + screens  -->
+                        <div
+                            class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                            <!-- sort select box  -->
+                            <div class="sort-select-wrapper w-50">
+                                <select id="sort-selector"
+                                    class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                    <!-- Here we're checking the current_sorting returned by the view to determine which option was selected  -->
+                                    <!-- JS is used to make this box work  -->
+                                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>
+                                        Sort by...</option>
+                                    <option value="price_asc"
+                                        {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)
+                                    </option>
+                                    <option value="price_desc"
+                                        {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)
+                                    </option>
+                                    <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>
+                                        Name (A-Z)</option>
+                                    <option value="title_desc"
+                                        {% if current_sorting == 'Title_desc' %}selected{% endif %}>Name (Z-A)</option>
+                                    <!-- <option value="category_asc"
+                                        {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)
+                                    </option>
+                                    <option value="category_desc"
+                                        {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)
+                                    </option> -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- product count -->
+                        <!-- sort select is on top on mobile, and first for medium + screens  -->
+                        <div class="col-12 col-md-6 order-md-first">
+                            <p class="text-muted mt-3 text-center text-md-left">
+                                {% if search_term or current_categories or current_sorting != 'None_None' %}
+                                <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
+                                {% endif %}
+                                {{ products|length }} Products{% if search_term %} found for
+                                <strong>"{{ search_term }}"</strong>{% endif %}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <h2>AVAILABLE TURTLES</h2>
-
-            {% get_available_turtle_count as available_turtles %}
-            {% if available_turtles > 0 %}
 
             <!-- row 2 - products  -->
+
             <div class="row">
+                <h2>AVAILABLE TURTLES</h2>
+            </div>
+            <div class="row">
+
+                {% get_available_turtle_count as available_turtles %}
+                {% if available_turtles > 0 %}
+
+
                 {% for product in products %}
                 {% if not product.turtle.sponsored_status %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -73,7 +114,10 @@
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
                                     <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
-                                    <p class="mb-0">Species: {{ product.turtle.get_species_display }}</p>
+                                    <p class="mb-0">Species:
+                                        <a
+                                            href="{% url 'products' %}?turtle.species={{ product.turtle.species }}">{{ product.turtle.get_species_display }}</a>
+                                    </p>
 
                                     {% if request.user.is_superuser %}
                                     <small class="ml-3">
@@ -126,7 +170,11 @@
 
             {% endif %}
 
-            <h2>SPONSORED TURTLES</h2>
+            <div class="row">
+
+                <h2>SPONSORED TURTLES</h2>
+
+            </div>
 
             {% get_sponsored_turtle_count as sponsored_turtles %}
             {% if sponsored_turtles > 0 %}
@@ -208,4 +256,43 @@
     </a>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!-- block.super appends the block, instead of replacing it  -->
+
+<script type="text/javascript">
+    // this jquery code is for the sort button 
+    // capture change event from sort selector 
+    $('#sort-selector').change(function () {
+        var selector = $(this);
+        var currentUrl = new URL(window.location);
+
+        // the value here refers to the value attribute from the selected option element in the selector box 
+        var selectedVal = selector.val();
+        if (selectedVal != "reset") {
+            // split the value and sort the first value 
+            var sort = selectedVal.split("_")[0];
+            // specify the direction based on the second item
+            var direction = selectedVal.split("_")[1];
+
+            // replace the get parFameters in the URL using the search params.set method from the URL object
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction);
+
+            // With the new URL now constructed, replace the current location using window.location.replace 
+            // with the updated current URL. Replacing the location will also cause the page to reload which 
+            // will resort the products accordingly.
+            window.location.replace(currentUrl);
+            // if user has selected reset 
+        } else {
+            // delete the sort and direction get parameters and then replace the location.
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
+
+            window.location.replace(currentUrl);
+        }
+    })
+</script>
 {% endblock %}
