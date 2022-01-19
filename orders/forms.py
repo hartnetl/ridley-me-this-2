@@ -1,13 +1,14 @@
 from django import forms
+from django.forms import inlineformset_factory
 from .widgets import CustomClearableFileInput
-from .models import Product, Category
+from .models import Product, Category, Turtles
 
 
 class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['category', 'sku', 'title', 'price', 'description', 'image_url', 'image', 'slug']
 
     image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
     
@@ -26,3 +27,11 @@ class ProductForm(forms.ModelForm):
         # Add style classes to all fields
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class TurtleForm(forms.ModelForm):
+    class Meta:
+        model = Turtles
+        fields = ['species', 'sponsored_status']
+
+

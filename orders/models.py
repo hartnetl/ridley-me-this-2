@@ -35,10 +35,10 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
-    sku = models.CharField(max_length=254)
-    title = models.CharField(max_length=254)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    description = models.TextField()
+    sku = models.CharField(max_length=254, null=False, blank=False)
+    title = models.CharField(max_length=254, null=False, blank=False)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
+    description = models.TextField(null=False, blank=False)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
@@ -126,7 +126,7 @@ class OrderItem(models.Model):
     orderitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, editable=False)
 
     def __str__(self):
-        return f"{self.quantity} of {self.item.title}"
+        return f'SKU {self.product.sku} on order {self.order.order_number}'
 
     # def get_total_item_price(self):
     #     return self.quantity * self.item.price
@@ -140,7 +140,7 @@ class OrderItem(models.Model):
 
 
 class Turtles(models.Model):
-    product = models.OneToOneField(Product, null=True, blank=True, on_delete=models.CASCADE, related_name='turtle')
-    sponsored_status = models.BooleanField(default=False, null=True, blank=True)
-    species = models.CharField(choices=SPECIES, max_length=10, null=True, blank=True)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='turtle', null=True)
+    sponsored_status = models.BooleanField(default=False, null=False, blank=False)
+    species = models.CharField(choices=SPECIES, max_length=10, null=False, blank=False)
 
