@@ -45,7 +45,7 @@
 
             <!-- row 2 - products  -->
             <div class="row">
-                {% for product in object_list %}
+                {% for product in products %}
                 {% if not product.turtle.sponsored_status %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0">
@@ -125,7 +125,7 @@
             {% if sponsored_turtles > 0 %}
 
             <div class="row">
-                {% for product in object_list %}
+                {% for product in products %}
                 {% if product.turtle.sponsored_status %}
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0">

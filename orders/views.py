@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.db.models import Q
 from .models import Product
 from .forms import ProductForm, TurtleForm
 from .formset import TurtleFormset
@@ -23,9 +24,34 @@ class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return redirect(reverse('home'))
 
 
-class productsView(ListView):
-    model = Product
-    template_name = "orders/view_products.html"
+# class productsView(ListView):
+#     model = Product
+#     template_name = "orders/view_products.html"
+
+#     def get_queryset(self):
+#         query = self.kwargs.get('name', '')
+#         object_list = self.model.objects.all()
+#         if name:
+#             object_list = object_list.filter(name__icontains=name)
+#         return object_list
+
+def products_view(request):
+    products = Product.objects.all()
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+            queries = Q(title__icontains=query) | Q(description__icontains=query)
+            products = products.filter(queries)
+    context = {
+        'products': products,
+        'search_term': query,
+    }
+
+    return render(request, 'orders/view_products.html', context)
 
 
 class ProductDetailView(DetailView):
