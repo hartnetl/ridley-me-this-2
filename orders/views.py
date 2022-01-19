@@ -42,13 +42,14 @@ def products_view(request):
     categories = None
     sort = None
     direction = None
+    species = None
 
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
-            queries = Q(title__icontains=query) | Q(description__icontains=query)
+            queries = Q(title__icontains=query) | Q(description__icontains=query) | Q(turtle__species__icontains=query)
             products = products.filter(queries)
 
         if 'category' in request.GET:

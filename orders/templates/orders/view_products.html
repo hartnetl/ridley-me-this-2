@@ -73,6 +73,7 @@
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
                                     <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
+                                    <p class="mb-0">Species: {{ product.turtle.get_species_display }}</p>
 
                                     {% if request.user.is_superuser %}
                                     <small class="ml-3">
