@@ -260,7 +260,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<!-- block.super appends the block, instead of replacing it  -->
+<!-- SCRIPT FOR SORT BOX  -->
 
 <script type="text/javascript">
     // this jquery code is for the sort button 
@@ -293,6 +293,14 @@
 
             window.location.replace(currentUrl);
         }
+    })
+</script>
+
+<!-- SCRIPT FOR ARROW BOX  -->
+
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
     })
 </script>
 {% endblock %}
