@@ -35,6 +35,11 @@ class ProductDetailView(DetailView):
 
 @login_required
 def AddProduct(request):
+    # user must be superuser
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
     product_form = ProductForm()
     turtle_details_formset = TurtleFormset()
 
@@ -48,7 +53,8 @@ def AddProduct(request):
             if turtle_details_formset.is_valid():
                 product_form.save()
                 turtle_details_formset.save()
-                return redirect('products')
+                messages.success(request, f"Successfully added '{product.title}'")
+                return redirect(reverse('view_product', args=[product.slug]))
             else:
                 turtle_details_formset = TurtleFormset(request.POST)
 
