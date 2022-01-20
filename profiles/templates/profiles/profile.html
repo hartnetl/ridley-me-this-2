@@ -83,9 +83,26 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-12">
+            {% if order.orderitems.product.category is turtles %}
             <h2>Turtle Sponsorship</h2>
-            
+            <p>Thank you for sponsoring one (or more) of our turtles! We really appreciate that. Please find their details below.</p>
+            {% endif %}
+
+            {% for order in orders %}
+                {% for item in order.orderitems.all %}
+                {% if order.orderitems.product.category is turtles %}
+
+                <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">Order number:
+                    {{ order.order_number }}</a><br>
+                Order date: {{ order.date }}<br>
+                {{ item.product.title }}
+                <br>
+                <br>
+                {% endif %}
+                {% endfor %}
+            {% endfor %}
+
         </div>
     </div>
 </div>
