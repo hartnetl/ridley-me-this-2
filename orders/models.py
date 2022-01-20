@@ -156,6 +156,8 @@ class OrderItem(models.Model):
         super().save(*args, **kwargs)
 
 
+# code credit 
+# https://stackoverflow.com/questions/2199013/how-can-my-django-model-datefield-add-30-days-to-the-provided-value/2199371
 def get_sponsorship_end():
     return datetime.date.today() + timedelta(days=365)
 
@@ -172,8 +174,3 @@ class Turtles(models.Model):
     current_location = models.ImageField(null=True, blank=True)
 
     # species = models.ForeignKey('TurtleSpecies', on_delete=models.CASCADE)
-
-    # def get_end_date(self):
-    #     start = self.sponsorship_start
-    #     self.sponsorship_end = start + timedelta(days=365)
-    #     self.save()
