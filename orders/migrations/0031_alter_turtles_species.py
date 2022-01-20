@@ -9,11 +9,3 @@ class Migration(migrations.Migration):
     dependencies = [
         ('orders', '0030_alter_turtles_species'),
     ]
-
-    operations = [
-        migrations.AlterField(
-            model_name='turtles',
-            name='species',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.turtlespecies'),
-        ),
-    ]
