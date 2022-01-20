@@ -5,6 +5,7 @@ from django.shortcuts import reverse
 from django.db.models import Sum
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
+from datetime import timedelta
 from profiles.models import UserProfile
 
 SPECIES = [
@@ -158,4 +159,16 @@ class Turtles(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='turtle', null=True)
     sponsored_status = models.BooleanField(default=False, null=False, blank=False)
     species = models.CharField(choices=SPECIES, max_length=10, null=False, blank=False)
+    name = models.CharField(max_length=50)
+    sponsorship_start = models.DateField(auto_now_add=True)
+    sponsorship_end = models.DateField()
+    turtle_id = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    tagged_in = CountryField(blank_label='Choose country', max_length=100)
+    current_location = models.ImageField(null=True, blank=True)
+
     # species = models.ForeignKey('TurtleSpecies', on_delete=models.CASCADE)
+
+    def get_end_date(self):
+        start = self.sponsorship_start
+        self.sponsorship_end = start + timedelta(days=365)
+        self.save()

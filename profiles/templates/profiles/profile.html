@@ -96,7 +96,16 @@
                 <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">Order number:
                     {{ order.order_number }}</a><br>
                 Order date: {{ order.date }}<br>
-                {{ item.product.title }}
+                {{ item.product.title }}<br>
+                Name: {{ item.product.turtle.name }}<br>
+                ID: {{item.product.turtle.turtle_id }}<br>
+                Species: {{ item.product.turtle.get_species_display }}<br>
+                Country tagged: {{item.product.turtle.tagged_in }}<br>
+                Sponsorship start date: {{ item.product.turtle.sponsorship_start }}<br>
+                Sponsorship end date: {{ item.product.turtle.sponsorship_end }}<br>
+                Picture of {{ item.product.turtle.name }}: {{ item.product.image }}<br>
+                Current location: {{item.product.turtle.current_location}}
+
                 <br>
                 <br>
                 {% endif %}
