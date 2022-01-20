@@ -33,6 +33,21 @@ class Category(models.Model):
         return self.friendly_name
 
 
+class TurtleSpecies(models.Model):
+    class Meta:
+        verbose_name_plural = 'Species'
+
+    name = models.CharField(max_length=200)
+    friendly_name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
+
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     sku = models.CharField(max_length=254, null=False, blank=False)
@@ -143,4 +158,4 @@ class Turtles(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='turtle', null=True)
     sponsored_status = models.BooleanField(default=False, null=False, blank=False)
     species = models.CharField(choices=SPECIES, max_length=10, null=False, blank=False)
-
+    # species = models.ForeignKey('TurtleSpecies', on_delete=models.CASCADE)

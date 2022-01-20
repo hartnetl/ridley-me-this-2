@@ -5,7 +5,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .models import Product
+from django.db.models import Q
+from django.db.models.functions import Lower
+from .models import Product, Category
 from .forms import ProductForm, TurtleForm
 from .formset import TurtleFormset
 
@@ -23,9 +25,65 @@ class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return redirect(reverse('home'))
 
 
-class productsView(ListView):
-    model = Product
-    template_name = "orders/view_products.html"
+# class productsView(ListView):
+#     model = Product
+#     template_name = "orders/view_products.html"
+
+#     def get_queryset(self):
+#         query = self.kwargs.get('name', '')
+#         object_list = self.model.objects.all()
+#         if name:
+#             object_list = object_list.filter(name__icontains=name)
+#         return object_list
+
+def products_view(request):
+    products = Product.objects.all()
+    query = None
+    categories = None
+    sort = None
+    direction = None
+    species = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+            queries = Q(title__icontains=query) | Q(description__icontains=query) | Q(turtle__species__icontains=query)
+            products = products.filter(queries)
+
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
+
+        # query for sorting
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'title':
+                sortkey = 'lower_title'
+                products = products.annotate(lower_title=Lower('title'))
+            if sortkey == 'category':
+                sortkey = 'category__name'
+
+            # if sort is there, also check for direction
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
+    current_sorting = f'{sort}_{direction}'
+
+    context = {
+        'products': products,
+        'search_term': query,
+        'current_categories': categories,
+        'current_sorting': current_sorting,
+    }
+
+    return render(request, 'orders/view_products.html', context)
 
 
 class ProductDetailView(DetailView):

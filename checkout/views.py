@@ -74,6 +74,7 @@ def checkout(request):
                         product=product,
                         quantity=item_data,
                     )
+                    order_item.save()
                     product.turtle.sponsored_status=True
                     product.turtle.save()
     
