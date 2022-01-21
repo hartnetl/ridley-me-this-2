@@ -75,8 +75,9 @@ def checkout(request):
                         quantity=item_data,
                     )
                     order_item.save()
-                    product.turtle.sponsored_status=True
-                    product.turtle.save()
+                    if product.category.name == 'turtles':
+                        product.turtle.sponsored_status=True
+                        product.turtle.save()
     
                 # on the off chance a product isn't found 
                 except Product.DoesNotExist:
