@@ -63,7 +63,7 @@
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="logo-font text-black my-0"><strong>Turtle</strong> Sponsor</h2>
                 </a>
-                {% if user.is_authenticated %}Hello {{ user.username }} {% else %} Hello anonymous user {% endif %}
+                {% if user.isauthenticated %}Hello {{ user.username }} {% else %} Hello anonymous user {% endif %}
             </div>
 
             <!-- Search bar  -->
