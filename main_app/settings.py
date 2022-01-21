@@ -227,7 +227,7 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'ridleymethis@example.com'
 
 CONTACT_EMAIL = 'laura.codeinstitute@outlook.com'
-ADMIN_EMAIL = ['laura.hartnett@outlook.com', 'hartnetl@tcd.ie', 'laura.codeinstitute@outlook.com', ]
+ADMIN_EMAIL = [ 'laura.codeinstitute@outlook.com', ]
 
 # django emails for sign up etc 
 
