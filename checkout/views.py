@@ -95,7 +95,7 @@ def checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
         else:
-            # form wasn't valid 
+            # form wasn't valid
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
