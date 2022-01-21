@@ -83,14 +83,35 @@
 
             <!-- row 2 - products  -->
 
+            <!-- category badges  -->
+
+            {% for c in current_categories %}
+            <!-- category-badge and text-black are the only non-bootstrap classes here -->
+            <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                <span
+                    class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+            </a>
+                {% if c.name == 'turtles' %}
+                <div class="row">
+                    <h2>AVAILABLE TURTLES</h2>
+                </div>
+                {% elif c.name == 'merch' %}
+                <div class="row">
+                    <h2>Merchandise</h2>
+                </div>
+                {% elif c.name == 'donations' %}
+                <div class="row">
+                    <h2>Donations</h2>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+            
             <div class="row">
-                <h2>AVAILABLE TURTLES</h2>
-            </div>
-            <div class="row">
+            
 
                 {% get_available_turtle_count as available_turtles %}
                 {% if available_turtles > 0 %}
-
 
                 {% for product in products %}
                 {% if not product.turtle.sponsored_status %}
@@ -250,6 +271,7 @@
         </div>
     </div>
 </div>
+
 <div class="btt-button shadow-sm rounded-0 border border-black">
     <a class="btt-link d-flex h-100">
         <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
