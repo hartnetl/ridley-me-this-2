@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 
 <h1>Customer Testimonials</h1>
@@ -8,15 +18,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 mt-3 left">
-            {% for testimonial in testimonial_list %}
+            {% for testimonial in testimonials_list %}
 
             <span>
-                {{ testimonial.icon}}
-                <strong>{{ testimonial.reviewed by }}</strong> says:
+                <img alt="user uploaded image" src="{{ testimonial.icon }}">
+                <strong>{{ testimonial.reviewed_by }}</strong> says:
 
             </span>
             <div>
-                {{ testimonial.rating }}<br>
+                <strong>Rating:{{ testimonial.rating }}/5 </strong><br>
                 {{ testimonial.content }}<br>
                 <span class="small right">{{ testimonial.reviewed_on}}</span>
             </div>
@@ -45,4 +55,6 @@
             {% endif %}
         </div>
     </div>
-    {% endif %}
+{% endif %}
+
+{% endblock %}
