@@ -3,6 +3,7 @@ from django.views import generic, View
 from django.contrib import messages
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .models import Testimonials
 from .forms import TestimonialForm
 
@@ -36,7 +37,7 @@ class EditTestimonial(LoginRequiredMixin, UpdateView):
         return Testimonials.objects.get(pk=self.request.GET.get('pk'))
 
 
-# @login_required
+@login_required
 def edit_testimonial(request, testimonial_id):
     """ Edit a product in the store """
     # if not request.user.is_superuser:
