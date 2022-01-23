@@ -34,9 +34,10 @@
                 {{ testimonial.content }}<br>
                 <span class="small right">{{ testimonial.reviewed_on}}</span>
                 {% if user.is_superuser %}
-                    <a href="{% url 'edit_testimonial' testimonial.id %}" class="small">edit</a>
+                    <a href="{% url 'delete_testimonial' testimonial.id %}" class="small">delete</a>
                 {% elif user.is_authenticated and user == testimonial.reviewed_by %}
                 <a href="{% url 'edit_testimonial' testimonial.id %}" class="small">edit</a>
+                <a href="{% url 'delete_testimonial' testimonial.id %}" class="small">delete</a>
                 {% endif %}
                
             </div>

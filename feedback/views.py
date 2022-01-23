@@ -40,11 +40,13 @@ class EditTestimonial(LoginRequiredMixin, UpdateView):
 @login_required
 def edit_testimonial(request, testimonial_id):
     """ Edit a product in the store """
-    # if not request.user.is_superuser:
-    #     messages.error(request, 'Sorry, only store owners can do that.')
-    #     return redirect(reverse('home'))
 
     test = get_object_or_404(Testimonials, pk=testimonial_id)
+
+    if test.reviewed_by != request.user or not request.user.is_superuser:
+        messages.error(request, 'Sorry, you do not have permission to do that')
+        return redirect(reverse('testimonials'))
+
     # post handler
     if request.method == 'POST':
         # instantiate a form using request.post and request.files using the instance of the product gotten above
@@ -67,3 +69,17 @@ def edit_testimonial(request, testimonial_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_testimonial(request, testimonial_id):
+
+    test = get_object_or_404(Testimonials, pk=testimonial_id)
+
+    if test.reviewed_by != request.user or not request.user.is_superuser:
+        messages.error(request, 'Sorry, you do not have permission to do that')
+        return redirect(reverse('testimonials'))
+    
+    test.delete()
+    messages.success(request, 'Deleted that testimonial')
+    return redirect(reverse('testimonials'))
