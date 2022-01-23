@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<h1>Customer Testimonials</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3 left">
+           
+        </div>
+    </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <!-- Security token -->
+    {% csrf_token %}
+    <div class="container recipe-form">
+        <div class="card">
+            <div class="card-body">
+                {% crispy form %}
+            </div>
+        </div>
+        <button class="form-submit box-button" type="submit">Submit</button>
+    </div>
+
+</form>
+
+{% endblock %}
