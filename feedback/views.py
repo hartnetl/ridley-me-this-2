@@ -1,6 +1,7 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.views import generic, View
-from django.views.generic.edit import CreateView
+from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Testimonials
 from .forms import TestimonialForm
@@ -26,12 +27,42 @@ class CreateTestimonial(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# class TestimonialView(request):
-#     testimonials = Testimonials.objects.all()
+class EditTestimonial(LoginRequiredMixin, UpdateView):
+    model = Testimonials
+    form_class = TestimonialForm
+    template_name = 'feedback/edit_testimonial.html'
 
-#     context = {
-#         'testimonials': testimonials,
-#     }
+    def get_object(self, queryset=None):
+        return Testimonials.objects.get(pk=self.request.GET.get('pk'))
 
-#     return render(request, 'feedback/testimonials.html', context)
 
+# @login_required
+def edit_testimonial(request, testimonial_id):
+    """ Edit a product in the store """
+    # if not request.user.is_superuser:
+    #     messages.error(request, 'Sorry, only store owners can do that.')
+    #     return redirect(reverse('home'))
+
+    test = get_object_or_404(Testimonials, pk=testimonial_id)
+    # post handler
+    if request.method == 'POST':
+        # instantiate a form using request.post and request.files using the instance of the product gotten above
+        form = TestimonialForm(request.POST, request.FILES, instance=test)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated your testimonial!')
+            return redirect(reverse('testimonials'))
+        else:
+            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+    else:
+        # display prefilled form 
+        form = TestimonialForm(instance=test)
+        messages.info(request, 'You are editing your testimonial')
+
+    template = 'feedback/edit_testimonial.html'
+    context = {
+        'form': form,
+        'test': test,
+    }
+
+    return render(request, template, context)

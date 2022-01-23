@@ -33,6 +33,7 @@
                 <strong>Rating:{{ testimonial.rating }}/5 </strong><br>
                 {{ testimonial.content }}<br>
                 <span class="small right">{{ testimonial.reviewed_on}}</span>
+                <a href="{% url 'edit_testimonial' testimonial.id %}" class="small">edit</a>
             </div>
             {% endfor %}
         </div>
