@@ -31,7 +31,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 stripe.api_key = 'sk_test_51K1HPjFEToCWPRVcmmrRxsCjJKuU0l7R9t0v452RamNdTcNkVQtWBSV7PXSSCFQJxCP26LSZ1ThBMfxvBqBdzcxb00sCw4NGpr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+# DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = ['ridley-me-this-app.herokuapp.com', 'localhost']
 
