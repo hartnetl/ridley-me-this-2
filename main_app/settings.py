@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_countries',
     'storages',
-    'feedback',
 
     'home',
     'orders',
@@ -60,6 +59,8 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
     'contact',
+    'feedback',
+    'about',
 ]
 
 MIDDLEWARE = [
