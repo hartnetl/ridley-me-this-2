@@ -27,7 +27,7 @@
     {% for testimonial in testimonials_list %}
     <div class="row">
         <!-- <div class="row"> -->
-            <div class="row">
+            <!-- <div class="row"> -->
                 <div class="col-12">
                     {% if testimonial.icon %}
                     <img class="icon" src="{{ testimonial.icon.url }}" alt="User's uploaded image">
@@ -37,13 +37,13 @@
                     {% endif %}
                     <strong>{{ testimonial.reviewed_by }}</strong> says: 
                 </div>
-            </div>
+            <!-- </div> -->
             <br>
-            <div class="row">
+            <!-- <div class="row"> -->
                 <div class="col offset-1">
                     <strong>Rating:{{ testimonial.rating }}/5 </strong><br>
                     {{ testimonial.content }}<br>
-                    <span class="small right">{{ testimonial.reviewed_on}}</span>
+                    <span class="small">{{ testimonial.reviewed_on}}</span>
                     {% if user.is_superuser %}
                     <a href="{% url 'delete_testimonial' testimonial.id %}" class="small">delete</a>
                     {% elif user.is_authenticated and user == testimonial.reviewed_by %}
@@ -51,7 +51,7 @@
                     <a href="{% url 'delete_testimonial' testimonial.id %}" class="small">delete</a>
                     {% endif %}
                 </div>
-            </div>
+            <!-- </div> -->
             <br>
         <!-- </div> -->
     </div>
