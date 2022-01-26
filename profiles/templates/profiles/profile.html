@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% comment %} This js which allows to submit forms through ajax and must be loaded in the page{% endcomment %}
+{% block extra_js%}
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
@@ -86,30 +91,60 @@
         <div class="col-12">
             {% if order.orderitems.product.category is turtles %}
             <h2>Turtle Sponsorship</h2>
-            <p>Thank you for sponsoring one (or more) of our turtles! We really appreciate that. Please find their details below.</p>
+            <p>Thank you for sponsoring one (or more) of our turtles! We really appreciate that. Please find their
+                details below.</p>
             {% endif %}
 
             {% for order in orders %}
-                {% for item in order.orderitems.all %}
-                {% if order.orderitems.product.category is turtles %}
+            {% for item in order.orderitems.all %}
+            {% if order.orderitems.product.category is turtles %}
 
-                <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">Order number:
-                    {{ order.order_number }}</a><br>
-                Order date: {{ order.date }}<br>
-                {{ item.product.title }}<br>
-                Name: {{ item.product.turtle.name }}<br>
-                ID: {{item.product.turtle.turtle_id }}<br>
-                Species: {{ item.product.turtle.get_species_display }}<br>
-                Country tagged: {{item.product.turtle.tagged_in }}<br>
-                Sponsorship start date: {{ item.product.turtle.sponsorship_start }}<br>
-                Sponsorship end date: {{ item.product.turtle.sponsorship_end }}<br>
-                Picture of {{ item.product.turtle.name }}: {{ item.product.image }}<br>
-                Current location: {{item.product.turtle.current_location}}
+            <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">Order number:
+                {{ order.order_number }}</a><br>
+            Order date: {{ order.date }}<br>
+            {{ item.product.title }}<br>
+            Name: {{ item.product.turtle.name }}<br>
+            ID: {{item.product.turtle.turtle_id }}<br>
+            Species: {{ item.product.turtle.get_species_display }}<br>
+            Country tagged: {{item.product.turtle.tagged_in }}<br>
+            Sponsorship start date: {{ item.product.turtle.sponsorship_start }}<br>
+            Sponsorship end date: {{ item.product.turtle.sponsorship_end }}<br>
+            Picture of {{ item.product.turtle.name }}: {{ item.product.image }}<br>
+            Current location: {{item.product.turtle.current_location}}
 
-                <br>
-                <br>
-                {% endif %}
-                {% endfor %}
+            <br>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                Update turtle's name
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Update Turtle's Name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           The form will go here
+                           <button>Update</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
             {% endfor %}
 
         </div>
