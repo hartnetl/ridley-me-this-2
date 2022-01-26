@@ -2,93 +2,140 @@
 <!-- https://mdbootstrap.com/docs/standard/navigation/footer/ -->
 
 <footer class="text-center text-lg-start bg-light text-muted">
-    
-    <!--  Social media -->
-    <section
-      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <div class="me-5 d-none d-lg-block">
-        <span>Join us on our social media:</span>
-      </div>
-        <div>
-        <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
-          <i class="fab fa-instagram"></i>
-        </a>
-      
-      </div>
-    </section>
-  
-    <!-- About  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <div class="row mt-3">
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fab fa-fort-awesome me-3"></i> Ridley Me This
-            </h6>
-            <p>
-                Ridley me this is a not for profit organisation which aims to support the sea turtle conservation effort. 
-                To help you can sponsor a turtle, buy our merch, make a donation or simply learn about how to make a difference
-                living a more eco-friendly life.
-                Learn more about us <a href="{% url 'about' %}" target="_blank">[here]</a>
-            </p>
-          </div>
-  
-          <!-- Product Links-->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-              Products
-            </h6>
-            <p>
-              <a href="{% url 'products' %}?category=turtles" class="text-reset">Sponsor a turtle</a>
-            </p>
-            <p>
-              <a href="{% url 'products' %}?category=merch" class="text-reset">Buy our merch</a>
-            </p>
-            <p>
-              <a href="{% url 'products' %}?category=donations" class="text-reset">Make a donation</a>
-            </p>
-          </div>
-  
-          <!-- Useful links -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Disclaimer</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Site Map</a>
-            </p>
-          </div>
-  
-          <!-- Contact Info -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-              Contact us
-            </h6>
-            <p><i class="fas fa-print me-3"></i> Contact Form <a href="{% url 'contact' %}">(link)</a></p>
-            <p><i class="fas fa-home me-3"></i> Address</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              ridleymethis@example-email.com
-            </p>
-            <p><i class="fas fa-phone me-3"></i> + 353 01 234 567 88</p>
-          </div>
+  <hr>
+  <p class="text-center">Join our mailing list!</p>
+  <form class="input-group justify-content-center"
+    action="https://outlook.us20.list-manage.com/subscribe/post?u=aad11b40ecfa2dfdc3cc906b3&amp;id=5411c81e1f"
+    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <input class="form-control-sm crispy-override" placeholder="example@example.com" aria-label="Your email"
+      type="email" value="" name="EMAIL" id="mce-EMAIL">
+    <div class="input-group-append">
+      <button class="btn btn-sm my-0 explore-button" type="submit" value="Subscribe" name="subscribe"
+        id="mc-embedded-subscribe">Submit</button>
+    </div>
+
+  </form>
+  <p class="text-center"></p>
+
+  <div id="mce-responses" class="clear foot">
+    <div class="response" id="mce-error-response" style="display:none"></div>
+    <div class="response" id="mce-success-response" style="display:none"></div>
+  </div>
+  <hr>
+
+  <!-- About  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fab fa-fort-awesome me-3"></i> Ridley Me This
+          </h6>
+          <p>
+            Ridley me this is a not for profit organisation which aims to support the sea turtle conservation effort.
+            To help you can sponsor a turtle, buy our merch, make a donation or simply learn about how to make a
+            difference
+            living a more eco-friendly life.
+            Learn more about us <a href="{% url 'about' %}" target="_blank">[here]</a>
+          </p>
+        </div>
+
+        <!-- Product Links-->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="{% url 'products' %}?category=turtles" class="text-reset">Sponsor a turtle</a>
+          </p>
+          <p>
+            <a href="{% url 'products' %}?category=merch" class="text-reset">Buy our merch</a>
+          </p>
+          <p>
+            <a href="{% url 'products' %}?category=donations" class="text-reset">Make a donation</a>
+          </p>
+        </div>
+
+        <!-- Useful links -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Disclaimer</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Site Map</a>
+          </p>
+          <p>
+            <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset" target="_blank" rel="noopener">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact us
+          </h6>
+          <p><i class="fas fa-print me-3"></i> Contact Form <a href="{% url 'contact' %}">(link)</a></p>
+          <p><i class="fas fa-home me-3"></i> Address</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            ridleymethis@example-email.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 353 01 234 567 88</p>
         </div>
       </div>
-    </section>
-  
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2021 Copyright hartnetl
-      <a href="https://www.linkedin.com/in/laurahartnett94/" class="me-4 text-reset" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/hartnetl/ridley-me-this-2" class="me-4 text-reset" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
     </div>
-  </footer>
+  </section>
+
+  <!-- Sign up  -->
+  <div class="container p-4 pb-0">
+    <section class="">
+      <p class="d-flex justify-content-center align-items-center">
+        <span class="me-3">Register for free </span>
+        <a class="btn btn-outline-primary btn-sm" href="{% url 'account_signup' %}" role="button">Sign up</a>
+      </p>
+    </section>
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright hartnetl
+    <a href="https://www.linkedin.com/in/laurahartnett94/" class="me-4 text-reset" target="_blank" rel="noopener"><i
+        class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/hartnetl/ridley-me-this-2" class="me-4 text-reset" target="_blank" rel="noopener"><i
+        class="fab fa-github"></i></a>
+  </div>
+</footer>
+
+{% block postloadjs %}
+<script src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+<script>
+  (function ($) {
+    window.fnames = new Array();
+    window.ftypes = new Array();
+    fnames[0] = 'EMAIL';
+    ftypes[0] = 'email';
+    fnames[1] = 'FNAME';
+    ftypes[1] = 'text';
+    fnames[2] = 'LNAME';
+    ftypes[2] = 'text';
+    fnames[3] = 'ADDRESS';
+    ftypes[3] = 'address';
+    fnames[4] = 'PHONE';
+    ftypes[4] = 'phone';
+    fnames[5] = 'BIRTHDAY';
+    ftypes[5] = 'birthday';
+  }(jQuery));
+  var $mcj = jQuery.noConflict(true);
+</script>
+{% endblock %}
