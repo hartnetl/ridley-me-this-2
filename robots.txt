@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /accounts/
+Sitemap: https://ridley-me-this-app.herokuapp.com/sitemap.xml

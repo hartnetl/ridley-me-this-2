@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/accounts/login/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/basket/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/?category=turtles</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/?category=merch</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/?category=donations</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/about/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/feedback/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/contact/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/about/learn</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/about/disclaimer</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/egtfhyujb/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/?turtle.species=flat</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/dsfghjk/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ridley-me-this-app.herokuapp.com/products/dfghjk/</loc>
+  <lastmod>2022-01-27T14:23:10+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
