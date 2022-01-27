@@ -2,6 +2,7 @@
     {% csrf_token %}
     <div class="form-group">
         <div class="input-group">
+            {% if not item.product.turtle %}
             <div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-black rounded-0" 
                     data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
@@ -22,8 +23,28 @@
                     </span>
                 </button>
             </div>
+            {% else %}
+            <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-content="IMPORTANT! Make sure the quantity of this turtle sponsorship is 1! You will be charged for the amount in your cart but only receive one lot of details for this turtle.">
+                <i class="fas fa-exclamation-circle"></i>
+              </button>
+            <input class="form-control form-control-sm qty_input" type="number"
+                name="quantity" value="{{ item.quantity }}" min="1" max="1"
+                data-item_id="{{ item.item_id }}"
+                id="id_qty_{{ item.item_id }}">
+
+            {% endif %}
         </div>
     </div>
 </form>
 <a class="update-link text-info"><small>Update</small></a>
-<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+<a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+
+
+{% block postloadjs %}
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+</script>
+
+{% endblock %}
