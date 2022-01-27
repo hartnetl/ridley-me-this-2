@@ -25,7 +25,7 @@
 </li>
 
 <!-- Button to open my account dropdown  -->
-
+{% if request.user.is_authenticated %}
 <li class="list-inline-item dropdown">
     <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
@@ -34,18 +34,17 @@
         </div>
     </a>
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
-        {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
-                <a href=" " class="dropdown-item">Product Management</a>
+                <a href="{% url 'add_product'%}" class="dropdown-item">Add Products</a>
             {% endif %}
-            <a href=" " class="dropdown-item">My Profile</a>
+            <a href="{% url 'profile' %} " class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-        {% else %}
-            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-        {% endif %}
     </div>
 </li>
+{% else %}
+            <a class="d-block d-lg-none" href="{% url 'account_signup' %}" class="dropdown-item"><i class="fas fa-user-plus"></i> Register</a>
+            <a class="d-block d-lg-none" href="{% url 'account_login' %}" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+{% endif %}
 
 <!-- Access shopping basket button-->
 
