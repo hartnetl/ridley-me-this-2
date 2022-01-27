@@ -25,56 +25,6 @@ class SuperUserRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return redirect(reverse('home'))
 
 
-def product_search(request):
-    products = Product.objects.all()
-    query = None
-    categories = None
-    sort = None
-    direction = None
-    species = None
-
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-            queries = Q(title__icontains=query) | Q(description__icontains=query) | Q(turtle__species__icontains=query)
-            products = products.filter(queries)
-
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
-
-        # query for sorting
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'title':
-                sortkey = 'lower_title'
-                products = products.annotate(lower_title=Lower('title'))
-            if sortkey == 'category':
-                sortkey = 'category__name'
-
-            # if sort is there, also check for direction
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
-
-    current_sorting = f'{sort}_{direction}'
-
-    context = {
-        'products': products,
-        'search_term': query,
-        'current_categories': categories,
-        'current_sorting': current_sorting,
-    }
-
-    return render(request, 'orders/search_products.html', context)
-
-
 def products_view(request):
     products = Product.objects.all()
     query = None
@@ -210,61 +160,6 @@ def EditProduct(request, slug):
     }
     return render(request, 'orders/edit_products.html', context=context)
 
-
-# class AddProduct(CreateView):
-#     model = Product
-#     form_class = ProductForm
-#     template_name = 'orders/add_product.html'
-#     success_message = "Successfully added '%(title)s'"
-
-#     def get_success_url(self):
-#         return reverse('view_product', kwargs={'slug': self.object.slug})
-
-
-#     def get_context_data(self, **kwargs):
-#         context = super(AddProduct, self).get_context_data(**kwargs)
-
-#         if self.request.POST:
-#             context['turtle_formset'] = TurtleFormset(self.request.POST)
-#         else:
-#             context['turtle_formset'] = TurtleFormset()
-#         return context
-
-#     def form_valid(self, form):
-#         context = self.get_context_data()
-#         turtle_details_form = context['TurtleFormset']
-#         if turtle_details_form.is_valid():
-#             self.object = form.save()
-#             turtle_details_form.instance = self.object
-#             turtle_details_form.save()
-#             return redirect(reverse('view_product', args=[product.slug]))
-
-
-# class AddProduct(SuperUserRequiredMixin, SuccessMessageMixin, CreateView):
-#     model = Product
-#     form_class = ProductForm
-#     template_name = 'orders/add_product.html'
-#     success_message = "Successfully added '%(title)s'"
-
-#     def get_success_url(self):
-#         return reverse('view_product', kwargs={'slug': self.object.slug})
-
-#     def form_valid(self, form):
-#         form.instance.creator = self.request.user
-#         print(form.cleaned_data)
-#         return super().form_valid(form)
-
-
-# class EditProduct(SuperUserRequiredMixin, SuccessMessageMixin, UpdateView):
-#     model = Product
-#     form_class = ProductForm
-#     template_name = 'orders/edit_products.html'
-#     success_message = "Successfully updated '%(title)s'"
-
-#     def get_success_url(self):
-#         return reverse('view_product', kwargs={'slug': self.object.slug})
-
-@login_required
 
 @login_required
 def delete_product(request, slug):
