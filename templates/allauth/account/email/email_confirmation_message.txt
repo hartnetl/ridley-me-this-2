@@ -1,9 +1,14 @@
-{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from Ridley me This!
+Find our page here https://ridley-me-this-app.herokuapp.com/
 
-You're receiving this e-mail because user {{ user_display }} has given yours as an e-mail address to connect their account.
+This is an email verification message for '{{ user_display }}'.
+If this is you, please follow the below link.
 
 To confirm this is correct, go to {{ activate_url }}
 {% endblocktrans %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from {{ site_name }}!
+
+If this wasn't meant for you, please ignore this e-mail.
+
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from the team at Ridley Me This x
 {{ site_domain }}{% endblocktrans %}
 {% endautoescape %}

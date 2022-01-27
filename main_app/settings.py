@@ -230,14 +230,14 @@ STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'ridleymethis@example.com'
 
 CONTACT_EMAIL = 'laura.codeinstitute@outlook.com'
-ADMIN_EMAIL = [ 'laura.codeinstitute@outlook.com', ]
+ADMIN_EMAIL = ['laura.codeinstitute@outlook.com', ]
 
 # django emails for sign up etc 
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'ridleymethis@example.com'
-else:  
+else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587

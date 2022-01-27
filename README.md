@@ -1,108 +1,209 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Ridley Me this
 
-Welcome hartnetl,
+[Live Site]( https://ridley-me-this-app.herokuapp.com/)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+1. [Introduction](#introduction)
+2. [Data Structure](#data-structure)
+3. [Web Marketing](#web-marketing)
+4. [Technologies used](#technologies-used)
+5. [Features](#features)
+6. [Testing](#testing)
+7. [Bugs](#bugs)
+8. [Credits](#credits)
+9. [Deployment](#deployment)
+10. [Acknowledgements](#acknowledgements)
 
-## Gitpod Reminders
+## Introduction
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+***
 
-`python3 -m http.server`
+Welcome to **Ridley Me This**. 
 
-A blue button should appear to click: _Make Public_,
+### Project Planning
 
-Another blue button should appear to click: _Open Browser_.
+#### Agile Development
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+Agile development helps to create an organised and efficient development plan to create a project which fulfills it's purpose. I have attempted to use this approach to build this project.  
+This system requires a thorough project planning phase - deciding what the app is, and what the main goals of the project are. These are then developed into user stories, and features are built to address these user stories. To keep track of my development I created a user stories kanban board in github projects ([here](https://github.com/hartnetl/lord-of-the-recipes/projects/1)). I created an issue for each user story which was set to automatically display in my user story project. As I tackled each user story, it was moved to the in progress column. When I felt it had been completed it was moved to complete. Agile development also allows for the project to change. If the requirements have been met it is possible to revisit an issue to make changes or improvements to deliver the project in the best form possible.  
 
-A blue button should appear to click: _Make Public_,
 
-Another blue button should appear to click: _Open Browser_.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### User Goals
 
-To log into the Heroku toolbelt CLI:
+As a site user I want to be able to   
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
-------
+As a site owner I want to be able to  
 
-## Release History
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+#### User stories 
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+| As a:       | I can:         | So that:  |
+| ------------- |:-------------:| -----:|
+|    |  |  |
+|    |  |  |
+|    |  |  |
+|    |  |  |
+|    |  |  |
+|    |  |  |
+|    |  |  |
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+#### Wireframes
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+<details>
+<summary>Show wireframes</summary>
+</details>
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+#### UI design
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+**Fonts**
+* The logo font used is 
+* The main text font used is 
+* The main heading font is 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Data Structure
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+The database used locally is sql and by heroku is postgres.  
+AWS is used to house media and static files for this project.  
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Talk about the models
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+<details>
+<summary>Custom data models used:</summary>
+Show the model schema:
+![datamodels used](#)
+</details>
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+<br>
 
-------
+## Web Marketing
 
-## FAQ about the uptime script
+### Business Model
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Facebook Campaign
 
-**How will this affect me?**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## Technologies Used
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+***
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+Languages  
+* [Python3](https://www.python.org/about/) 
+* [Javascript](https://www.tutorialspoint.com/javascript/javascript_overview.htm#:~:text=JavaScript%20is%20a%20dynamic%20computer,language%20with%20object%2Doriented%20capabilities.) 
+* [html5](https://developer.mozilla.org/en-US/docs/Web/HTML) 
+* [css](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-**So….?**
+<br>
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+Libraries and other technologies used
+* [Django 3](https://www.djangoproject.com/start/overview/)
+* [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+* [Google fonts](https://fonts.google.com/)
+* [Fontawesome](https://fontawesome.com/)
+* [Postgresql](https://www.postgresql.org/)
+* [aws](#)
 
-**Can I opt out?**
+Other tools
+* [Gitpod](https://www.gitpod.io/docs/) as the IDE for development 
+* [Git](https://git-scm.com/about) for version control 
+* [Github](https://github.com/about) to host the project code 
+* [Heroku](https://www.heroku.com/about) to deploy the project
+* W3C for validating [html](https://validator.w3.org/), [css](https://jigsaw.w3.org/css-validator/) and [links](https://validator.w3.org/checklink) 
+* [jshint](https://jshint.com/about/) to validate javascript
+* [pep8 online](http://pep8online.com/about) to validate python code
+* [lighthouse](https://developers.google.com/web/tools/lighthouse) to test accessibilility and performance 
+* [github projects](https://docs.github.com/en/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards) to create kanban boards 
+* [balsamiq](https://balsamiq.com/) for wireframes
+* [tinypng](https://tinypng.com/) to compress image file sizes
+* [logomaker](https://www.logomaker.com/ ) to create the logo
+    
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+## Features
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
 
-**Anything more?**
+#### SCREENSHOTS of site
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+### Future features 
 
-Happy coding!
+* Integrate google maps API to generate random location for sponsored turtles
+* Add banner which tells users how much money has been donated to date
+
+
+## Testing 
+
+***
+
+### Manual Testing
+
+The manual testing file is [here](#)
+
+
+### Validation
+
+html: [W3C markup validator](https://validator.w3.org/)   
+Each page url was ran through the validator and any errors or warnings that appeared were corrected, and the url was ran through the validator again.  
+<details>
+<summary></summary>
+
+![w3c html validator results for home page](#)
+</details>
+<details>
+<summary></summary>
+
+</details>  
+<br>
+
+CSS: [W3C validator](https://jigsaw.w3.org/css-validator/)  
+CSS file was copied into the validator
+<details>
+<summary>View clear validator</summary>
+
+![css validator with no warnings](#)
+</details>   
+
+<br>
+
+Python: [pep8](http://pep8online.com/)  
+
+<details>
+<summary></summary>
+
+</details>
+
+
+JS: [JSHint](https://jshint.com/)  
+JS script was ran through jshint 
+<details><summary>View jshint result</summary>
+
+![screenshot of jshint results](#)
+</details>
+
+
+Links: [w3c link validator](https://validator.w3.org/checklink)
+<details>
+<summary>View report here</summary>
+
+![links report](#)
+</details>
+
+
+## Bugs
+
+
+## Credits
+
+
+## Deployment
+
+
+## Acknowledgements
+
+

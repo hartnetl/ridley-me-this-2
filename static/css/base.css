@@ -427,3 +427,7 @@ input[name='q']::placeholder {
   .min-height {
       min-height: 20vh;
   }
+
+.big-min-height {
+    min-height: 40vh;
+}
