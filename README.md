@@ -135,7 +135,7 @@ Other tools
 
 * Integrate google maps API to generate random location for sponsored turtles
 * Add banner which tells users how much money has been donated to date
-
+* Collate sponsorship details about the turtles for the management
 
 ## Testing 
 
