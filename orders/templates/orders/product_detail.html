@@ -44,6 +44,8 @@
                     <!-- form is a single row with two columns  -->
                     <div class="form-row">
 
+                        {% if not product.turtle %}
+
                         <!-- col 1 = quantity input  -->
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
@@ -75,7 +77,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        
+                        {% endif %}
                         <div>
                             {% if request.user.is_superuser %}
                                 <small class="ml-3">
