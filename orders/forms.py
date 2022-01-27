@@ -33,3 +33,9 @@ class TurtleForm(forms.ModelForm):
     class Meta:
         model = Turtles
         fields = ['species', 'sponsored_status']
+
+
+class TurtleNameForm(forms.ModelForm):
+    class Meta: 
+        model = Turtles
+        fields = ['name']

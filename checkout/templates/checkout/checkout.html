@@ -58,6 +58,9 @@
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.product.title }}</strong></p>
                     <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                    {% if item.product.turtle %}
+                    <p class="my-0 small">Name: {{ item.product.turtle.name }}</p>
+                    {% endif %}
                 </div>
                 <!-- subtotal  -->
                 <div class="col-3 text-right">

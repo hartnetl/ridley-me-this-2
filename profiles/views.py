@@ -5,6 +5,7 @@ from django.views.generic.edit import UpdateView
 from .models import UserProfile
 from .forms import UserProfileForm
 from orders.models import Order
+from orders.forms import TurtleNameForm
 
 
 def order_history(request, order_number):
@@ -58,6 +59,25 @@ def profile(request):
     return render(request, template, context)
 
 
-# def edit_turtle_name(UpdateView):
-    
+def EditTurtleName(request, turtle_id):
+    turtle = get_object_or_404(Turtles, pk=turtle_id)
 
+    if request.method == 'POST':
+        turtle_form = TurtleNameForm(request.POST, request.FILES, instance=turtle)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated name!')
+            return redirect(reverse('profile'))
+        else:
+            messages.error(request, 'Failed to update name. Please ensure the form is valid.')
+    else:
+        turtle_form = TurtleNameForm(instance=turtle)
+        messages.info(request, f'You are editing {product.turtle.name}')
+
+    template = 'profile.html'
+    context = {
+        'turtle_form': turtle_form,
+        'turtle': turtle,
+    }
+
+    return render(request, template, context)

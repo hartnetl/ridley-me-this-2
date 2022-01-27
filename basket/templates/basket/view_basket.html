@@ -61,6 +61,12 @@
                             <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
                         </td>
                     </tr>
+                    {% if item.product.turtle %}
+                        <tr>
+                            <th>Enter Turtle Name:</th>
+                            <td><input type="text" name="name" value="" id="nameturtle" required></td>
+                        </tr>
+                    {% endif %}
                     {% endfor %}
 
                     <tr>
