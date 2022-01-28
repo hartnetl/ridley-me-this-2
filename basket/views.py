@@ -22,8 +22,14 @@ def add_to_basket(request, item_id):
     basket = request.session.get('basket', {})
 
     if item_id in list(basket.keys()):
-        basket[item_id] += quantity
-        messages.success(request, f'Added {quantity} "{product.title}" to your basket')
+        if product.category.name == 'turtles':
+            messages.error(request, "You cannot add more than one of these to your basket")
+            return redirect(redirect_url)
+        else:
+            basket[item_id] += quantity
+            print("category")
+            print(product.category)
+            messages.success(request, f'Added {quantity} "{product.title}" to your basket')
     else:
         basket[item_id] = quantity
         messages.success(request, f'Added {quantity} "{product.title}" to your basket')

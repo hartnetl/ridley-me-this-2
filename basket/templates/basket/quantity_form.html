@@ -27,8 +27,8 @@
             <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="top" data-content="IMPORTANT! Make sure the quantity of this turtle sponsorship is 1! You will be charged for the amount in your cart but only receive one lot of details for this turtle.">
                 <i class="fas fa-exclamation-circle"></i>
               </button>
-            <input class="form-control form-control-sm qty_input" type="number"
-                name="quantity" value="{{ item.quantity }}" min="1" max="1"
+            <input class="form-control form-control-sm qty_input" type="number" readonly
+                name="quantity" value=1
                 data-item_id="{{ item.item_id }}"
                 id="id_qty_{{ item.item_id }}">
 
