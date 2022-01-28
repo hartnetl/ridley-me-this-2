@@ -7,6 +7,19 @@ Your order information is below:
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 
+{% for item in order.orderitems.all %}
+    {{ item.product.title }}
+    {{ item.quantity }} @ €{{ item.product.price }} each
+{% endfor %}
+
+Your order: 
+
+{{ order.orderitems.all }}
+
+{{ order.orderitems.product.title }}
+
+end of order
+
 Order Total: €{{ order.order_total }}
 Delivery: €{{ order.delivery_cost }}
 Grand Total: €{{ order.grand_total }}
@@ -16,10 +29,10 @@ Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_ci
 We've got your phone number on file as {{ order.phone_number }}.
 
 If you have any questions, feel free to contact us at {{ contact_email }}.
-
+}
 Thank you for your order!
 
 Sincerely,
 
 The Ridley Me This team 
-x
+xoxo
