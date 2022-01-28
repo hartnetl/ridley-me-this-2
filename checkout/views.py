@@ -76,7 +76,7 @@ def checkout(request):
                     )
                     order_item.save()
                     if product.category.name == 'turtles':
-                        product.turtle.sponsored_status=True
+                        product.turtle.sponsored_status = True
                         product.turtle.save()
     
                 # on the off chance a product isn't found 
