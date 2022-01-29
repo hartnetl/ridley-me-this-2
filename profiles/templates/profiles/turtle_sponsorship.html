@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% comment %} This js which allows to submit forms through ajax and must be loaded in the page{% endcomment %}
+{% block extra_js%}
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4"> {{ user.username }}'s Sponsored Turtles</h2>
+            <hr>
+        </div>
+    </div>
+
+    <h2> Turtle Information</h2>
+    <p>If you have sponsored any turtles you will find their info below</p>
+    <p>To name your turtle please send us a message using <a href="{% url 'contact' %}">this</a> contact form with the subject "NAME MY TURTLE" and mention your turtle's ID</p>
+    <div class="row">
+        <div class="col-12">
+            {% if orders %}
+                {% for order in orders %}
+                    {% for item in order.orderitems.all %}
+                        {% if item.product.category.name == 'turtles' %}
+                            YOU SPONSORED TURTLES<br>
+                            <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">Order number:
+                                {{ order.order_number }}</a><br>
+                            Order date: {{ order.date }}<br>
+                            Order title: {{ item.product.title }}<br>
+                            Name: {{ item.product.turtle.name }}<br>
+                            ID: {{item.product.turtle.turtle_id }}<br>
+                            Species: {{ item.product.turtle.get_species_display }}<br>
+                            Country tagged: {{item.product.turtle.tagged_in }}<br>
+                            Sponsorship start date: {{ item.product.turtle.sponsorship_start }}<br>
+                            Sponsorship end date: {{ item.product.turtle.sponsorship_end }}<br>
+                            Picture of {{  item.product.turtle.name }}: {{ item.product.image }}<br>
+                            Current location: {{item.product.turtle.current_location}}<br><br>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+{% endblock %}

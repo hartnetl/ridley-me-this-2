@@ -59,6 +59,21 @@ def profile(request):
     return render(request, template, context)
 
 
+
+def turtle_history(request):
+    """ Display the user's profile. """
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+
+    template = 'profiles/turtle_sponsorship.html'
+    context = {
+        'orders': orders,
+        'on_profile_page': True
+    }
+
+    return render(request, template, context)
+
+
 def EditTurtleName(request, turtle_id):
     turtle = get_object_or_404(Turtles, pk=turtle_id)
 

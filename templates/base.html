@@ -107,6 +107,9 @@
                             <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                            {% if order.orderitems.product.category is turtles %}
+                            <a href="{% url 'turtle_history' %}" class="dropdown-item">Turtles Sponsored</a>
+                            {% endif %}
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                         </div>
                     </li>
