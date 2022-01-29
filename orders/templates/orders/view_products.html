@@ -54,7 +54,12 @@
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                    <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
+                                    <p class="small mt-1 mb-0">
+                                        <a class="text-muted"
+                                            href="{% url 'products' %}?category={{ product.category.name }}">
+                                            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                        </a>
+                                    </p>
 
                                     {% if request.user.is_superuser %}
                                     <small class="ml-3">
@@ -152,10 +157,14 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                        <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
+                                        <p class="small mt-1 mb-0">
+                                            <a class="text-muted"
+                                                href="{% url 'products' %}?category={{ product.category.name }}">
+                                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                            </a>
+                                        </p>
                                         <p class="mb-0">Species:
-                                            <a
-                                                href="{% url 'products' %}?turtle.species={{ product.turtle.species }}">{{ product.turtle.get_species_display }}</a>
+                                            {{ product.turtle.get_species_display }}
                                         </p>
 
                                         {% if request.user.is_superuser %}
@@ -244,7 +253,6 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                        <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
 
                                         {% if request.user.is_superuser %}
                                         <small class="ml-3">
@@ -345,7 +353,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                        <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
+                                        <p class="small mt-1 mb-0">
+                                            <a class="text-muted"
+                                                href="{% url 'products' %}?category={{ product.category.name }}">
+                                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                            </a>
+                                        </p>
 
                                         {% if request.user.is_superuser %}
                                         <small class="ml-3">
@@ -423,7 +436,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                        <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
+                                        <p class="small mt-1 mb-0">
+                                            <a class="text-muted"
+                                                href="{% url 'products' %}?category={{ product.category.name }}">
+                                                <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                            </a>
+                                        </p>
 
                                         <!-- add item to basket  -->
 
@@ -518,92 +536,7 @@
 
             </div>
 
-            <!----------------- ALL SECTION ----------------------------->
-
-            <div>
-                {% else %}
-
-                <div class="row">
-                    <!-- Header -->
-
-                    <div class="row">
-                        <div class="col mt-10">
-                            <hr>
-                            <h2 class="logo-font">All Products</h2>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row">
-                        {% include 'orders/includes/sort.html' %}
-                    </div>
-
-                    <div class="row">
-
-                        {% for product in products %}
-
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
-                                {% if product.image %}
-                                <a href="{{ product.get_absolute_url }}">
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}"
-                                        alt="{{ product.title }}">
-                                </a>
-                                {% else %}
-                                <a href="{{ product.get_absolute_url }}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
-                                        alt="{{ product.title }}">
-                                </a>
-                                {% endif %}
-                                <div class="card-body pb-0">
-                                    <p class="mb-0">{{ product.title }}</p>
-                                </div>
-                                <div class="card-footer bg-white pt-0 border-0 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                            <p class="mb-0">Category: {{ product.category.friendly_name }}</p>
-
-                                            {% if request.user.is_superuser %}
-                                            <small class="ml-3">
-                                                <a href="{% url 'edit_product' product.slug %}">Edit</a> |
-                                                <a class="text-danger"
-                                                    href="{% url 'delete_product' product.slug %}">Delete</a>
-                                            </small>
-                                            {% endif %}
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- This sets the size of the hr, depending on how many columns are there  -->
-
-                        {% if forloop.counter|divisibleby:1 %}
-                        <div class="col-12 d-sm-none mb-5">
-                            <hr>
-                        </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:2 %}
-                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                            <hr>
-                        </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:3 %}
-                        <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                            <hr>
-                        </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:4 %}
-                        <div class="col-12 d-none d-xl-block mb-5">
-                            <hr>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-
+    
             {% endif %}
             {% endfor %}
 
