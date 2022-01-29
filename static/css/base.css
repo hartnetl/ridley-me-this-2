@@ -79,7 +79,7 @@ body {
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: rgb(255, 255, 255);
+	background: #5cdb94;
 	z-index: -1;
 }
 
