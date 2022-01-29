@@ -33,6 +33,8 @@
                 {% csrf_token %}
                 {{ product_form | crispy }}
                 <!-- | crispy  -->
+                <P>NOTE TO ADMIN: ONLY FILL IN THE BELOW SECTION IF YOU ARE ADDING A TURTLE TO THE STORE! <BR>
+                    OTHERWISE, LEAVE BLANK</p>
                 {{ turtle_details_form | crispy }}
                 <!-- form buttons  -->
                 <div class="text-right">
