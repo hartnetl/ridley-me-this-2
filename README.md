@@ -18,26 +18,39 @@
 
 ***
 
-Welcome to **Ridley Me This**. 
+Welcome to **Ridley Me This**  
+This project is set up as a turtle sponsorship website, with the additional option to buy merchandise, give monetary donations or read up on turtle and eco living.  
+The 7 species of sea turtle have different levels of endangerment. We need to ensure none of these worsen, and hopefully get them all to not endangered status.  
+Users who sponsor a turtle do so for a year, and even get to give it a nickname for a year which is displayed on the website. A certificate of sponsorship and a special turtle themed gift is sent to each sponsor. The proceeds are then put towards the conservation effort to protect turtles.  
 
 ### Project Planning
 
 #### Agile Development
 
-Agile development helps to create an organised and efficient development plan to create a project which fulfills it's purpose. I have attempted to use this approach to build this project.  
-This system requires a thorough project planning phase - deciding what the app is, and what the main goals of the project are. These are then developed into user stories, and features are built to address these user stories. To keep track of my development I created a user stories kanban board in github projects ([here](https://github.com/hartnetl/lord-of-the-recipes/projects/1)). I created an issue for each user story which was set to automatically display in my user story project. As I tackled each user story, it was moved to the in progress column. When I felt it had been completed it was moved to complete. Agile development also allows for the project to change. If the requirements have been met it is possible to revisit an issue to make changes or improvements to deliver the project in the best form possible.  
+The agile development process helps to keep a team organised and on track. It does this through monitoring the progress of the project and rating each feature and associated tasks by importance (from ones that are needed, ones that the project should have, and those that would be nice to have but not needed).  
+An attempt was made to implement in this project, though admittedly because this was a solo project there was a tendency to track progress by handwiting to do lists etc over the github project setup.  That said, all issues were created based on user stories for the project requirements. These were broken into 6 different themes represented as 6 different project boards. Each project had 3 boards - to do, in progress and done. As the project progressed each issue card was moved between boards as its status changed. Issues were also given labels to declare an order of important - need, should and want labels.
 
-
+By using this agile system it enables the team (or individual) to create the best functional application in the shortest possible time, as the project is frequently reassessed and completed in set time bouts. This ensures time isn't wasted on nice to have features while ignoring the features that are definitely required.
 
 #### User Goals
 
-As a site user I want to be able to   
+As a site user I want to be able to:  
+
+* View all products available on the shop to see what is available
+* See a clear price so I know how much I'll spend
+* Make a profile to keep track of previous orders and save personal information for speedy future checkouts
+* Easily navigate around the site, and easily find the information / products I'm looking for 
+* Purchase the items I can see on the site
+* Know that the purchase was successful
 
 
+As a site owner I want to be able to:
 
-As a site owner I want to be able to  
-
-
+* Provide an aesthetically pleasing and easy to use website for users
+* Offer a wide range of products to attract more customers
+* Allow users to easily purchase my products, without the need to create an account
+* Add, edit and delete products on the site as required
+* Delete testimonials left by users, in the case of inappropriate content being posted.
 
 
 #### User stories 
@@ -86,8 +99,12 @@ Show the model schema:
 
 ### Business Model
 
+Ridley Me This is a not-for-profit e-commerce site. It allows users to sponsor turtles for a year, purchase merchandise and give monetary donations. 100% of cost is a profit which goes straight towards the conservation of the turtles. The delivery cost of the certificate and gift is covered by the user. There is a small profit made off of the merchandise, which goes straight towards conserving the turtles. Once again the delivery cost is covered by the user. There is nothing delivered when users make a donation, but by taking a 'delivery fee' for these transactions all processing fees are covered.
+
 
 ### Facebook Campaign
+
+As Facebook tends to remove pages it believes to not be a functional business page, I opted to create a mock up of a would be Facebook page.
 
 
 ## Technologies Used
@@ -108,7 +125,7 @@ Libraries and other technologies used
 * [Google fonts](https://fonts.google.com/)
 * [Fontawesome](https://fontawesome.com/)
 * [Postgresql](https://www.postgresql.org/)
-* [aws](#)
+* [aws](https://aws.amazon.com/)
 
 Other tools
 * [Gitpod](https://www.gitpod.io/docs/) as the IDE for development 
@@ -133,9 +150,11 @@ Other tools
 
 ### Future features 
 
-* Integrate google maps API to generate random location for sponsored turtles
+* Integrate google maps API to generate random location for sponsored turtles instead of a single uploaded image
 * Add banner which tells users how much money has been donated to date
-* Collate sponsorship details about the turtles for the management
+* Collate sponsorship details about the turtles for the management to reveal how much profit has been raised for the turtles, which turtles have been sponsored by who etc
+* Allow users to name the turtle when purchasing, instead of having to contact the site admin to do it manually
+* Add JavaScript to hide the turtle info section when admin is adding a product unless it is a turtle they are uploading
 
 ## Testing 
 
