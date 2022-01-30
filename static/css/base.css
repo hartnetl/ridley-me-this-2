@@ -1,13 +1,24 @@
+/* -------------------- GENERAL ACROSS PAGES ----------------------------- */
+
 html {
     height: 100%;
 }
 
 body {
-    background: url('/media/turtle-swimming.jpg') no-repeat center center fixed;
+    /* background: url('/media/turtle-swimming.jpg') no-repeat center center fixed; */
     background-size: cover;
     height: calc(100vh - 164px);
+    background-color: #84f9b1;
     color: #555;
     font-family: 'Lato';
+}
+
+header {
+    background: linear-gradient(#8ed5f0, #89e6d1,#84f9b1)!important; 
+}
+
+footer {
+    background: linear-gradient(#84f9b1, #89e6d1,#8ed5f0)!important;
 }
 
 /* from Bulma */
@@ -27,6 +38,7 @@ body {
     width: fit-content;
 }
 
+/* ---------------- HOME PAGE ------------------------------------------- */
 .shop-now-button {
     background: black;
     color: white;
@@ -76,11 +88,20 @@ body {
 .overlay {
 	height: 100%;
 	width: 100%;
-	top: 0;
+	top: 130px;
 	left: 0;
 	position: fixed;
 	background: #5cdb94;
 	z-index: -1;
+}
+.top-overlay {
+    height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: #389583;
+	z-index: -2;   
 }
 
 a.category-badge > span.badge:hover {
@@ -106,7 +127,7 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
-/* ------------------------------- bootstrap toasts */
+/* -------------------------- bootstrap toasts */
 
 .message-container {
     position: fixed;

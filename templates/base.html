@@ -27,7 +27,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    </style>
+    <!-- </style> -->
+
+    <!-- MD Bootstrap  -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
     <!-- custom css -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -47,6 +58,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+
+    <!-- MD Bootstrap  -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js">
+    </script>
+
     <!-- stripe -->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
@@ -60,12 +85,13 @@
 
 <body>
     <header class="container-fluid fixed-top">
+        <!-- <header class="container-fluid fixed-top tempting-azure-gradient color-block mb-3 mx-auto"> -->
         <div id="home-topnav" class="row pt-lg-2 d-none d-lg-flex">
 
             <!-- logo  -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><strong>Turtle</strong> Sponsor</h2>
+                    <h2 class="logo-font text-black my-0"><strong>RIDLEY</strong> ME <strong>THIS</strong></h2>
                 </a>
                 {% if user.is_authenticated %}Hello {{ user.username }} {% endif %}
             </div>
@@ -114,8 +140,10 @@
                         </div>
                     </li>
                     {% else %}
-                    <span class="list-inline-item"><a href="{% url 'account_signup' %}" class="dropdown-item"><i class="fas fa-user-plus"></i> Register</a></span>
-                    <span class="list-inline-item"><a href="{% url 'account_login' %}" class="dropdown-item"> <i class="fas fa-sign-in-alt"></i> Login</a></span>
+                    <span class="list-inline-item"><a href="{% url 'account_signup' %}" class="dropdown-item"><i
+                                class="fas fa-user-plus"></i> Register</a></span>
+                    <span class="list-inline-item"><a href="{% url 'account_login' %}" class="dropdown-item"> <i
+                                class="fas fa-sign-in-alt"></i> Login</a></span>
                     {% endif %}
 
                     <!-- Shopping Basket  -->
