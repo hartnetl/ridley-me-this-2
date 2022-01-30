@@ -5,7 +5,6 @@
 <div class="container header-container">
     <div class="row">
         <div class="col">
-            
         </div>
     </div>
 </div>
@@ -14,14 +13,32 @@
 {% block content %}
 
 <div class="container h-100">
-    <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black">Sponsor a turtle today</h1>
-            <div class="my-5">
-                <h4>
-                    <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                </h4>
-            </div>
+    <div class="row h-100 ">
+        <div class="col-12 text-center">
+            <div class="centered" id="turtle-image"></div>
+            <h1 class="display-5 cover-text text-dark text-center" id="image-top">Sea Turtles Need your help</h1>
+            <h2 class="display-5 cover-text image-bottom">Help us help them today</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col text-center">
+            <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-auto">Shop
+                Now</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <h3 class="pt-3">What We Do</h3>
+            <p>We aim to help conserve all 7 species of sea turtle. We have volunteers and staff that montior beaches
+                worldwide, protecting nests and tagging turtles when possible</p>
+            <h3 class="pt-3">How You Can Help</h3>
+            <p>By purchasing anything from our store you are helping continue our work. We don't take profit for
+                ourselves, all money is donated towards equipment and training for staff. Thank you for all your help,
+                we couldn't do this without you. If you feel like you want to do more, browse our learn more page, or
+                consider volunteering for conservation projects or organising a beach clean!</p>
         </div>
     </div>
 </div>

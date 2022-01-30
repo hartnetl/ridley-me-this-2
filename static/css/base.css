@@ -8,7 +8,7 @@ body {
     /* background: url('/media/turtle-swimming.jpg') no-repeat center center fixed; */
     background-size: cover;
     height: calc(100vh - 164px);
-    background-color: #84f9b1;
+    background-color: #99f5bc;
     color: #555;
     font-family: 'Lato';
 }
@@ -38,7 +38,49 @@ footer {
     width: fit-content;
 }
 
+.centered {
+    margin: 0 auto!important;
+}
+
 /* ---------------- HOME PAGE ------------------------------------------- */
+
+#turtle-image {
+    background: url('/media/turtle-swimming.jpg') no-repeat center center;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    height: 100%;
+    /* width: 60vw; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cover-text {
+    z-index: 2;
+    /* background-color: rgb(0,0,0); Fallback color */
+    /* background-color: rgba(0,0,0, 0.2); Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    /* border: 3px solid #f1f1f1; */
+    /* transform: translate(-50%, -50%); */
+    z-index: 2;
+    /* width: 80%; */
+    padding: 20px;
+    /* text-align: center; */
+}
+
+#image-top{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.image-bottom{
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+}
+
 .shop-now-button {
     background: black;
     color: white;
@@ -85,7 +127,7 @@ footer {
     background: #000 !important;
 }
 
-.overlay {
+/* .overlay {
 	height: 100%;
 	width: 100%;
 	top: 130px;
@@ -102,7 +144,7 @@ footer {
 	position: fixed;
 	background: #389583;
 	z-index: -2;   
-}
+} */
 
 a.category-badge > span.badge:hover {
     background: #212529 !important;
