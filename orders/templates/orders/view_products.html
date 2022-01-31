@@ -246,7 +246,7 @@
                             </a>
                             {% else %}
                             <a href="{{ product.get_absolute_url }}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png"
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}logo.png"
                                     alt="{{ product.title }}">
                             </a>
                             {% endif %}
@@ -256,7 +256,7 @@
                             <div class="card-footer bg-white pt-0 border-0 text-left">
                                 <div class="row">
                                     <div class="col">
-                                        <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                                        <p class="lead mb-0 text-left font-weight-bold">Name: {{ product.turtle.name }}</p>
 
                                         {% if request.user.is_superuser %}
                                         <small class="ml-3">
