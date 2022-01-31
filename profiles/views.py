@@ -1,11 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic.edit import UpdateView
+from orders.models import Order
 from .models import UserProfile
 from .forms import UserProfileForm
-from orders.models import Order
-from orders.forms import TurtleNameForm
 
 
 def order_history(request, order_number):
@@ -21,7 +19,8 @@ def order_history(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        # add the variable from_profile to check in that template if the user got there via the order history view
+        # add the variable from_profile to check in that template if the user
+        # got there via the order history view
         'from_profile': True,
     }
 
@@ -59,7 +58,6 @@ def profile(request):
     return render(request, template, context)
 
 
-
 def turtle_history(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -69,30 +67,6 @@ def turtle_history(request):
     context = {
         'orders': orders,
         'on_profile_page': True
-    }
-
-    return render(request, template, context)
-
-
-def EditTurtleName(request, turtle_id):
-    turtle = get_object_or_404(Turtles, pk=turtle_id)
-
-    if request.method == 'POST':
-        turtle_form = TurtleNameForm(request.POST, request.FILES, instance=turtle)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully updated name!')
-            return redirect(reverse('profile'))
-        else:
-            messages.error(request, 'Failed to update name. Please ensure the form is valid.')
-    else:
-        turtle_form = TurtleNameForm(instance=turtle)
-        messages.info(request, f'You are editing {product.turtle.name}')
-
-    template = 'profile.html'
-    context = {
-        'turtle_form': turtle_form,
-        'turtle': turtle,
     }
 
     return render(request, template, context)

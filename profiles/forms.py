@@ -1,6 +1,6 @@
 from django import forms
-from .models import UserProfile
 from orders.models import Turtles
+from .models import UserProfile
 
 
 class UserProfileForm(forms.ModelForm):
@@ -33,11 +33,6 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 \
+                profile-form-input'
             self.fields[field].label = False
-
-
-class TurtleNameForm(forms.ModelForm):
-    class Meta:
-        model = Turtles
-        fields = ['name']

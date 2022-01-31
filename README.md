@@ -168,33 +168,47 @@ The manual testing file is [here](#)
 ### Validation
 
 html: [W3C markup validator](https://validator.w3.org/)   
-Each page url was ran through the validator and any errors or warnings that appeared were corrected, and the url was ran through the validator again.  
-<details>
-<summary></summary>
+Each page of the site was run through the validator. If errors were found the required changes were made until they could be removed.  
+Unfortunately 2 warnings remain.  
 
-![w3c html validator results for home page](#)
+<details>
+<summary>Products Error</summary>
+
+![products error](readmefiles/product-err.png)  
+
+This error displays on the turtle and donations category page, but not the all products or merchandise donation page.  
+I tried to find a solution where all 3 categories and the regular product page didn't have this error but ran out of time.  
 </details>
-<details>
-<summary></summary>
 
-</details>  
+<details>
+<summary>Feedback Error</summary>
+
+![feedback error](readmefiles/testimonial-err.png)  
+
+This error displays on the testimonials page, despite the p tag being there. Couldn't find a solution for this.  
+
+![feedback code](readmefiles/testimonial-err-1.png)  
+
+</details>
+
 <br>
 
 CSS: [W3C validator](https://jigsaw.w3.org/css-validator/)  
-CSS file was copied into the validator
+All css was copied directly into the validator. No errors were found.  
 <details>
 <summary>View clear validator</summary>
 
-![css validator with no warnings](#)
+![css validator with no warnings](readmefiles/css-val.png)
 </details>   
 
 <br>
 
 Python: [pep8](http://pep8online.com/)  
-
+All python files were validated by pasting the code directly. All errors found were removed.
 <details>
-<summary></summary>
+<summary>PEP-8 results</summary>
 
+![pep8 no errors](readmefiles/pep-8.png)
 </details>
 
 

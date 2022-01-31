@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-stripe.api_key = 'sk_test_51K1HPjFEToCWPRVcmmrRxsCjJKuU0l7R9t0v452RamNdTcNkVQtWBSV7PXSSCFQJxCP26LSZ1ThBMfxvBqBdzcxb00sCw4NGpr'
+stripe.api_key = 'sk_test_51K1HPjFEToCWPRVcmmrRxsCjJKuU0l7R9t0v452RamNdTcNkVQt\
+    WBSV7PXSSCFQJxCP26LSZ1ThBMfxvBqBdzcxb00sCw4NGpr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
@@ -135,7 +136,8 @@ WSGI_APPLICATION = 'main_app.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+    DATABASES = {'default':
+                 dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 else:
     DATABASES = {
         'default': {
@@ -144,25 +146,26 @@ else:
         }
     }
 
-
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityVali\
+            dator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -190,7 +193,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
-    # Cache control 
+    # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
@@ -232,7 +235,7 @@ DEFAULT_FROM_EMAIL = 'ridleymethis@example.com'
 CONTACT_EMAIL = 'laura.codeinstitute@outlook.com'
 ADMIN_EMAIL = ['laura.codeinstitute@outlook.com', ]
 
-# django emails for sign up etc 
+# django emails for sign up etc
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

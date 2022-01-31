@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
-from django.views import generic, View
+from django.views import generic
 from django.contrib import messages
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import Testimonials
@@ -49,16 +49,18 @@ def edit_testimonial(request, testimonial_id):
 
     # post handler
     if request.method == 'POST':
-        # instantiate a form using request.post and request.files using the instance of the product gotten above
+        # instantiate a form using request.post and request.files using the
+        # instance of the product gotten above
         form = TestimonialForm(request.POST, request.FILES, instance=test)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated your testimonial!')
             return redirect(reverse('testimonials'))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update product. Please ensure \
+                the form is valid.')
     else:
-        # display prefilled form 
+        # display prefilled form
         form = TestimonialForm(instance=test)
         messages.info(request, 'You are editing your testimonial')
 
@@ -79,7 +81,7 @@ def delete_testimonial(request, testimonial_id):
     if test.reviewed_by != request.user or not request.user.is_superuser:
         messages.error(request, 'Sorry, you do not have permission to do that')
         return redirect(reverse('testimonials'))
-    
+
     test.delete()
     messages.success(request, 'Deleted that testimonial')
     return redirect(reverse('testimonials'))

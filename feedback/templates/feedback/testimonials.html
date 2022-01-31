@@ -20,8 +20,9 @@
     <hr>
 
     <p class="text-center"><i class="fas fa-dragon"></i></p>
-    <p><p class="text-center">A note to all users:</p><br> This dragon is our feedback guardian. We like to be 100%
-        honest and open with our
+    <p>
+        <p class="text-center">A note to all users:</p><br>
+        This dragon is our feedback guardian. We like to be 100% honest and open with our
         audience which is why this review section is free to be added to by all registered users. We want this to be a
         safe space for all users to voice their experience. If you leave us a negative (but valid) review we will not
         remove it, but will endeavour to rectify any mistakes we have made.<br> HOWEVER, absolutely no profanity,
@@ -29,7 +30,8 @@
         testimonial will be removed <strong>immediately</strong> if it is deemed inappropriate and your account will be
         removed. We're all about second chances, but our dragon guardian finds this behaviour inexcusable and there will
         be no
-        second chance for you. <br> All our love, the Ridley Me This team x</p>
+        second chance for you. <br> All our love, the Ridley Me This team x
+    </p>
     {% if user.is_authenticated %}
     <a href="{% url 'add_testimonial' %}" class="btn btn-success">Add a testimonial</a>
     {% endif %}

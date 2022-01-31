@@ -6,21 +6,17 @@ from orders.models import Product
 
 def basket_contents(request):
     """
-    This is a context processor.
-    Its purpose is to make this dictionary available to all templates across
-    the entire application
+    This is a context processor
+    This accesses the shopping basket and makes it available across all pages
     """
 
-    # List for the bag items to live
+    # List for the basket items to live
     basket_items = []
-    # starting total
     total = 0
-    # empty basket
     product_count = 0
-    # Access the session's shopping bag
+    # Access the session's shopping basket
     basket = request.session.get('basket', {})
 
-    # # For each item and quantity in bag
     for item_id, item_data in basket.items():
         product = get_object_or_404(Product, pk=item_id)
         total += item_data * product.price

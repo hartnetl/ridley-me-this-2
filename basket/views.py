@@ -1,11 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse, HttpResponse
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
-from django.utils import timezone
+from django.shortcuts import render, get_object_or_404, redirect, reverse, \
+     HttpResponse
 from django.contrib import messages
-from orders.models import Product, OrderItem, Order
+from orders.models import Product
 
 
 def view_basket(request):
@@ -23,16 +19,19 @@ def add_to_basket(request, item_id):
 
     if item_id in list(basket.keys()):
         if product.category.name == 'turtles':
-            messages.error(request, "You cannot add more than one of these to your basket")
+            messages.error(request, "You cannot add more than one of these to \
+                your basket")
             return redirect(redirect_url)
         else:
             basket[item_id] += quantity
             print("category")
             print(product.category)
-            messages.success(request, f'Added {quantity} "{product.title}" to your basket')
+            messages.success(request, f'Added {quantity} "{product.title}" to \
+                your basket')
     else:
         basket[item_id] = quantity
-        messages.success(request, f'Added {quantity} "{product.title}" to your basket')
+        messages.success(request, f'Added {quantity} "{product.title}" to your \
+            basket')
 
     request.session['basket'] = basket
     print(request.session['basket'])
@@ -48,7 +47,8 @@ def adjust_basket(request, item_id):
 
     if quantity > 0:
         basket[item_id] = quantity
-        messages.success(request, f'Updated {product.title} quantity to {basket[item_id]}')
+        messages.success(request, f'Updated {product.title} quantity to \
+            {basket[item_id]}')
 
     else:
         basket.pop(item_id)
