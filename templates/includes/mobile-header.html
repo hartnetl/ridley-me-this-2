@@ -28,7 +28,6 @@
     </li>
 
     <!-- Button to open my account dropdown  -->
-    {% if request.user.is_authenticated %}
     <li class="list-inline-item dropdown">
         <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -37,6 +36,7 @@
                 <p class="my-0">My Account</p>
             </div>
         </a>
+        {% if request.user.is_authenticated %}
         <div class="dropdown-menu border-0" aria-labelledby="user-options">
             {% if request.user.is_superuser %}
             <a href="{% url 'add_product'%}" class="dropdown-item">Add Products</a>
@@ -47,12 +47,19 @@
             {% endif %}
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
         </div>
+
+        {% else %}
+        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+
+            <a class="dropdown-item d-inline-block d-lg-none" href="{% url 'account_signup' %}"><i
+                    class="fas fa-user-plus"></i>
+                Register</a>
+            <a class="dropdown-item d-inline-block d-lg-none" href="{% url 'account_login' %}"><i
+                    class="fas fa-sign-in-alt"></i>
+                Login</a>
+        </div>
     </li>
-    {% else %}
-    <a class="d-block d-lg-none dropdown-item" href="{% url 'account_signup' %}"><i
-            class="fas fa-user-plus"></i> Register</a>
-    <a class="d-block d-lg-none dropdown-item" href="{% url 'account_login' %}"><i
-            class="fas fa-sign-in-alt"></i> Login</a>
+
     {% endif %}
 
     <!-- Access shopping basket button-->
