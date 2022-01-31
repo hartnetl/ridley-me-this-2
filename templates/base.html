@@ -136,12 +136,20 @@
                             {% endif %}
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                         </div>
+                    </li>
 
-                        {% else %}
-                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_signup' %}"
-                                class="dropdown-item"><i class="fas fa-user-plus"></i> Register</a></div>
-                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_login' %}"
-                                class="dropdown-item"> <i class="fas fa-sign-in-alt"></i> Login</a></div>
+
+                    {% else %}
+                    <li class="list-inline-item">
+                        <a href="{% url 'account_signup' %}"
+                            class="list-inline-item d-none d-md-inline-block dropdown-item"><i
+                                class="fas fa-user-plus"></i> Register</a>
+                    </li>
+
+                    <li class="list-inline-item">
+                        <a href="{% url 'account_login' %}"
+                            class=" list-inline-item d-none d-md-inline-block dropdown-item"> <i
+                                class="fas fa-sign-in-alt"></i> Login</a>
                     </li>
                     {% endif %}
 
