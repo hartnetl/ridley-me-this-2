@@ -22,7 +22,7 @@
             <hr>
 
             <div class="my-5">
-                <form action="" method="post">
+                <form method="post">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <input type="submit" value="Submit">
