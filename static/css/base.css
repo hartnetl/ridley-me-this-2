@@ -8,10 +8,11 @@ body {
     /* background: url('/media/turtle-swimming.jpg') no-repeat center center fixed; */
     background-size: cover;
     height: calc(100vh - 164px);
-    background-color: #99f5bc;
-    color: #555;
+    background: radial-gradient(#c7f0d6, #84f9b1);
+    color: #05396b;
     font-family: 'Lato';
 }
+
 
 header {
     background: linear-gradient(#8ed5f0, #89e6d1,#84f9b1)!important; 
@@ -40,6 +41,10 @@ footer {
 
 .centered {
     margin: 0 auto!important;
+}
+
+.nav-item:hover{
+    transform: scale(1.2);
 }
 
 /* ---------------- HOME PAGE ------------------------------------------- */
@@ -82,27 +87,28 @@ footer {
 }
 
 .shop-now-button {
-    background: black;
-    color: white;
+    background: #05396b;
+    color: #edf5e0;
     min-width: 260px;
 }
 
 .btn-black {
-    background: black;
-    color: white;
+    background: #05396b;
+    color: #edf5e0;
 }
 
 .btn-outline-black {
-    background: white;
-    color: black !important; /* use important to override link colors for <a> elements */
-    border: 1px solid black;
+    background: #edf5e0;
+    color: #05396b !important; /* use important to override link colors for <a> elements */
+    border: 1px solid #05396b;
 }
 
 .btn-outline-black:hover,
 .btn-outline-black:active,
 .btn-outline-black:focus {
-    background: black;
-    color: white !important;
+    background: #05396b;
+    color: #edf5e0 !important;
+    transform: scale(1.1);
 }
 
 .shop-now-button:hover,
@@ -111,40 +117,22 @@ footer {
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
-    color: white;
+    background: #03294d;
+    color: #edf5e0;
+    transform: scale(1.1);
 }
 
 .text-black {
-    color: #000 !important;
+    color: #05396b !important;
 }
 
 .border-black {
-    border: 1px solid black !important;
+    border: 1px solid #05396b !important;
 }
 
 .bg-black {
-    background: #000 !important;
+    background: #05396b !important;
 }
-
-/* .overlay {
-	height: 100%;
-	width: 100%;
-	top: 130px;
-	left: 0;
-	position: fixed;
-	background: #5cdb94;
-	z-index: -1;
-}
-.top-overlay {
-    height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: #389583;
-	z-index: -2;   
-} */
 
 a.category-badge > span.badge:hover {
     background: #212529 !important;
@@ -192,7 +180,7 @@ input[name='q']::placeholder {
     height: 0; 
     border-left: 4px solid transparent;
     border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
+    border-bottom: 10px solid #05396b;
     position: absolute;
     top: -10px;
     right: 36px;
@@ -254,7 +242,7 @@ input[name='q']::placeholder {
 }
 
 .allauth-form-inner-content input {
-    border-color: #000;
+    border-color: #05396b;
     border-radius: 0;
 }
 
@@ -278,8 +266,8 @@ input[name='q']::placeholder {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
+    background-color: #05396b;
+    border: 1px solid #05396b;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -292,8 +280,8 @@ input[name='q']::placeholder {
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {	
 	color: #fff;
-    background-color: #222;
-    border-color: #222;
+    background-color: #05396b;
+    border-color: #05396b;
 }
 
 .allauth-form-inner-content a {
