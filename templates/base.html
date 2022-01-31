@@ -27,7 +27,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    </style>
 
     <!-- MD Bootstrap  -->
     <!-- Font Awesome -->
@@ -42,7 +41,7 @@
     <!-- custom css -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
-
+    
     {% block extra_css %}
     {% endblock %}
 
@@ -205,12 +204,12 @@
 
     {% block postloadjs %}
     <!-- js for messages  -->
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
     <!-- js for newsletter  -->
-    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-    <script type='text/javascript'>
+    <script src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+    <script>
         (function ($) {
             window.fnames = new Array();
             window.ftypes = new Array();
@@ -233,8 +232,6 @@
 
     {% endblock %}
 
-
-</body>
 
 </body>
 
