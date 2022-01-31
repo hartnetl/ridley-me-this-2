@@ -19,15 +19,17 @@
     <h1>Customer Testimonials</h1>
     <hr>
 
-    <h2 class="text-center"><i class="fas fa-dragon"></i></h2>
+    <p class="text-center"><i class="fas fa-dragon"></i></p>
     <p>
-        <div class="text-center">A note to all users:</div><br> This dragon is our feedback guardian. We like to be 100% honest and open with our
+        <div class="text-center">A note to all users:</div><br> This dragon is our feedback guardian. We like to be 100%
+        honest and open with our
         audience which is why this review section is free to be added to by all registered users. We want this to be a
         safe space for all users to voice their experience. If you leave us a negative (but valid) review we will not
         remove it, but will endeavour to rectify any mistakes we have made.<br> HOWEVER, absolutely no profanity,
         vulgarity or abusive language will be tolerated. Your
         testimonial will be removed <strong>immediately</strong> if it is deemed inappropriate and your account will be
-        removed. We're all about second chances, but our dragon guardian finds this behaviour inexcusable and there will be no
+        removed. We're all about second chances, but our dragon guardian finds this behaviour inexcusable and there will
+        be no
         second chance for you. <br> All our love, the Ridley Me This team x
     </p>
     {% if user.is_authenticated %}
@@ -44,7 +46,6 @@
             <img class="icon" src="{{ testimonial.icon.url }}" alt="User's uploaded image">
             {% else %}
             <img class="icon" src="{{ MEDIA_URL }}icon.png" alt="default turtle icon">
-            </a>
             {% endif %}
             <strong>{{ testimonial.reviewed_by }}</strong> says:
         </div>
@@ -69,7 +70,7 @@
     {% endfor %}
 
 </div>
-</div>
+
 
 <!-- pagination -->
 {% if is_paginated %}
