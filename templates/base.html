@@ -41,7 +41,7 @@
     <!-- custom css -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
-    
+
     {% block extra_css %}
     {% endblock %}
 
@@ -66,7 +66,7 @@
     <!-- // </script> -->
     <!-- Bootstrap core JavaScript -->
     <!-- <script type="text/javascript" -->
-        <!-- src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+    <!-- src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
     <!-- MDB core JavaScript -->
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"> -->
     <!-- </script> -->
@@ -136,12 +136,14 @@
                             {% endif %}
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                         </div>
-                    
-                    {% else %}
-                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_signup' %}" class="dropdown-item"><i class="fas fa-user-plus"></i> Register</a></div>
-                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_login' %}" class="dropdown-item"> <i class="fas fa-sign-in-alt"></i> Login</a></div>
+
+                        {% else %}
+                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_signup' %}"
+                                class="dropdown-item"><i class="fas fa-user-plus"></i> Register</a></div>
+                        <div class="list-inline-item d-none d-md-inline-block"><a href="{% url 'account_login' %}"
+                                class="dropdown-item"> <i class="fas fa-sign-in-alt"></i> Login</a></div>
+                    </li>
                     {% endif %}
-                </li>
 
                     <!-- Shopping Basket  -->
                     <li class="list-inline-item">
