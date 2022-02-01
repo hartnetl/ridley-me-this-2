@@ -210,7 +210,7 @@ All python files were validated by pasting the code directly. All errors found w
 
 ![pep8 no errors](readmefiles/pep-8.png)
 </details>
-
+<br>
 
 JS: [JSHint](https://jshint.com/)  
 JS script was ran through jshint 
