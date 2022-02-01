@@ -227,7 +227,7 @@ DEFAULT_FROM_EMAIL = 'ridleymethis@example.com'
 CONTACT_EMAIL = 'laura.codeinstitute@outlook.com'
 ADMIN_EMAIL = ['laura.codeinstitute@outlook.com', ]
 
-# django emails for sign up etc 
+# django emails for sign up etc
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
