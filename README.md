@@ -479,7 +479,7 @@ All python files were validated by pasting the code directly. All errors found t
 ![pep8 no errors](readmefiles/pep-8.png)  
 
 After going through the entire app to reduce the line lengths, some threw django errors afer satisfying pep8 requirements.  
-Therefore it was better to revert to the longer line lengths and have some longer than usual lines.
+Therefore it was better to revert to the longer line lengths and have some longer than usual lines. I think I fixed all the code broken by separating out the lines.  
 
 ![Error 501 - long lines](readmefiles/pep-8-err.png)  
 Examples:  
@@ -552,6 +552,7 @@ Adding it back in made this work again
 
 * The turtle sponsorship dates are linked to the date the product is added, not the date a user sponsors the turtle  
 * Even though users can't add more than one turtle at a time, they can repeatedly add the same one to basket - I started trying to fix this but ran out of time before I could fully erase bug  
+* When admin is adding/editing products the image url stopped uploading images. This worked before but last minute stopped. Images can still be uploaded via the admin panel, and to the testimonal page 
 
 
 <hr>
@@ -561,8 +562,14 @@ Adding it back in made this work again
 
 ### Code
 
-* Rolling back migrations  
+* Rolling back migrations    
 https://www.delftstack.com/howto/django/django-rollback-migration/
+
+* code institute, who's walkthrough got me thorugh this project   
+https://codeinstitute.net/global/
+
+* django docs  
+https://docs.djangoproject.com/en/4.2/
 
 
 ### Media  
@@ -602,9 +609,118 @@ https://www.delftstack.com/howto/django/django-rollback-migration/
 ## Deployment
 <hr>
 
+This program is deployed using Heroku.
+
+Before deploying a project, ensure all dependencies (libraries etc that Heroku needs to build and run your project) are listed. The command "pip3 freeze > requirements.txt" in the python terminal will generate this list in a file called requirements.txt which will be read by Heroku.
+Ensure debug is set to false for deployment.
+
+### Set up the App
+
+Note: These steps will walk through some of the steps to set up the environment settings just to ensure they are the same  
+
+To get a copy of this code it can be forked to your own repository  
+Go to the repository page on GitHub. This project's repo can be found [here](https://github.com/hartnetl/ridley-me-this-2)  
+Find 'fork' along the top of the page on the right hand side  
+A copy of this code will be sent to your own repository, where you can use that pretty green 'Gitpod' button to open it in GitPod  
+You will need to set up your environment as described below for it to work  
+
+**Note**  
+If you need a local copy of the code to play with, cloning the code is a better option:   
+
+Go to the repository page on GitHub. This project is  [here](https://github.com/hartnetl/ridley-me-this-2)  
+Find the button that says 'Code' to the left of the green Gitpod button  
+Choose the cloning method you require (HTTPS/ SSH or CLI)  
+Open Git Bash  
+Enter the working directory as your desired location for the cloned directory  
+Type "git clone" and paste the URL you copied from github  
+Hit enter and the code should be cloned for local use  
+Set up your local environment  
+Install requirements  
+
+In your editor's terminal enter the following command:
+
+  pip3 install -r requirements.txt
+
+This will install all the dependancies needed to run the project
+
+### Connect to heroku
+
+Go to [Heroku](https://dashboard.heroku.com/apps), and register/login  
+Click 'create new app'  
+Setup your app name and region  
+Navigate to the Resources tab. Set your database to Postgres with the hobby dev option.  
+Go to the Deploy tab and connect your Github repository by searching for it (this one is ridley-me-this-app)  
+Connect postgres database to local environment  
+
+Go to or create env.py and import os  
+
+set up your database and secret key  
+
+  os.environ["DATABASE_URL"] = "Paste in Heroku DATABASE_URL Link"    
+  os.environ["SECRET_KEY"] = "Make up a randomSecretKey"  
+
+Make sure env.py is in your gitignore file  
+
+Go to heroku and add your secret key value to the config vars under SECRET_KEY  
+
+### Set up environment
+
+In settings.py add:  
+
+    from pathlib import Path  
+    import os  
+    import dj_database_ur  
+
+    if os.path.exists("env.py"):  
+        import env  
+
+Set your secret key to
+
+    SECRET_KEY = os.environ.get('SECRET_KEY')  
+
+Set database to postgres  
+
+    DATABASES = {  
+    'default':  
+    dj_database_url.parse(os.environ.get("DATABASE_URL"))}  
+
+Run migrations using  
+
+    python3 manage.py makemigrations  
+    python3 manage.py migrate  
+
+Connect static files with aws  
+
+Create/login to aws account   
+Create your user, group, policy and bucket as required    
+
+Add your secret keys and IDs to heroku and your settings.py file  
+
+Set your static and media files to source from aws when deployed  
+
+Link templates directory in heroku to app (still in settings.py)  
+
+Add heroku and local environment as allowed hosts  
+
+Create Procfile in root directory - Note the capital P
+
+        web: gunicorn PROJECT_NAME.wsgi  
+
+Commit and push your changes and your app should run in heroku  
+To return to local development just switch debug to true and collectstatic (in heroku config vars) to 0 if not set up as if clause for development  
+
+Remember to swap the settings back before pushing and returning to deployed version
 <hr>
 
 ## Acknowledgements
 <hr>
+
+I would first like to say a huge thank you to my cohort. You are such an incredible group of women and I've been so lucky to work with you these past 9 months. You've been such an inspiration and we've all come a long way since our first stand up. Our weekly catch ups and messages in between have been such a huge support and this experience would not have been the same without you. Not to mention all the group trouble shooting that has gone on, I'd have been lost if not for that!  
+
+To Kasia, our cohort facilitator, words can't express what a huge support you have been to myself and the entire cohort. Your endless patience, positivity and encouragement were a huge source of motivation. You were always right there with a helpful response and really went above and beyond to help us. I'll miss our weekly catch ups but know it's not the end of our group!  
+
+To my mentor Maria for always being so encouraging and positive even when the situation was looking pretty grim. Your guidance through this project has been so valuable. Thank you for your patience and understanding when everything seemed to be going sideways. Even when your availability was reduced you still made the time to make sure I was sorted and I really want to express how much I appreciate all your help.
+
+To the tutor staff and slack community, your advice and help throughout this project has been especially important and I can't thank you all enough. I've really come to love how supportive and positive this community is, and I'm so glad I'll be able to remian a part of it even after the course is finished. 
 
 
