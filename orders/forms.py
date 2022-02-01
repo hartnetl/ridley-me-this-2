@@ -34,10 +34,6 @@ class ProductForm(forms.ModelForm):
 class TurtleForm(forms.ModelForm):
     class Meta:
         model = Turtles
-        fields = ['species', 'sponsored_status']
+        fields = ['species', 'name', 'sponsored_status', 'tagged_in', 'current_location', 'turtle_id']
 
 
-class TurtleNameForm(forms.ModelForm):
-    class Meta:
-        model = Turtles
-        fields = ['name']

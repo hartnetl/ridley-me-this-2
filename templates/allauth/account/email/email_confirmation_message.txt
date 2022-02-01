@@ -10,5 +10,5 @@ To confirm this is correct, go to {{ activate_url }}
 If this wasn't meant for you, please ignore this e-mail.
 
 {% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from the team at Ridley Me This x
-{{ site_domain }}{% endblocktrans %}
+{% endblocktrans %}
 {% endautoescape %}
