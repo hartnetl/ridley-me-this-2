@@ -421,7 +421,7 @@ EPIC: Join community
 * Collate sponsorship details about the turtles for the management to reveal how much profit has been raised for the turtles, which turtles have been sponsored by who etc
 * Allow users to name the turtle when purchasing, instead of having to contact the site admin to do it manually
 * Add JavaScript to hide the turtle info section when admin is adding a product unless it is a turtle they are uploading
-
+* Tidy up admin panel - I ran out of time to add the meta data
 
 <hr>
 
@@ -500,6 +500,24 @@ All pages were ran through the link validator. No errors were returned, but ther
 ![links report](readmefiles/link-val.png)
 </details>
 
+<br>
+
+Lighthouse: [lighthouse](https://developers.google.com/web/tools/lighthouse)  
+Checks performance, accessibility and seo
+
+<details>
+<summary>Mobile</summary>
+
+![light house for mobile](readmefiles/lighthouse-mobile.png)
+
+</details>
+
+<details>
+<summary>Desktop</summary>
+
+![light house for mobile](readmefiles/lighthouse-desktop.png)
+
+</details>
 
 <hr>
 
