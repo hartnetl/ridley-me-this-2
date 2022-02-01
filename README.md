@@ -101,14 +101,21 @@ The colour scheme used is 'cool and fresh' found [here](https://visme.co/blog/we
 <hr>
 
 The database used locally is sql and by heroku is postgres.  
-AWS is used to house media and static files for this project.  
+AWS is used to house media and static files for this project when deployed  
 
-Talk about the models
+This project has a few connected models running the application.  
+The django allauth user model is used to generate profiles for users quickly, and it's info is populated when users register with the site.  
+The username is a foreign key in the profile model, which allows a personal profile to be assigned to each person containing their information. The profile model is populated with personal information about the user.  
+Registered users can leave feedback for the site through the testimonials page. They leave their comment with a rating and have the choice to upload a little icon to go with that. Their name is automatically assigned as their username, which is retrieved via a foreign key to the user model.  
+The order model attaches an order to a user and allows users to enter their persobal info for the order. The order is attached to a User via a foreign key to that model. A unique order number is generated for each order. The total cost of the order is calculated.  
+The order items make up the order contents of each order, and so is connected to the order by it's foreign key. Each order item gives details about the product being ordered (retrieved via a foreign key to the product model) and the quantity of that product (which is an integer field). The total for each item is calculated.  
+The product model holds details about the product - title, price, description etc. It is linked to the category model with a foreign key, and this site currently has 3 categories - merchandise, donations and turtles. The merchandise and donation categories are treated mostly the same, but the turtle catgegory has another model attached to it via foreign key. This is conveniently named Turtles. This model contains extra information about the turtle such as it's ID, it's name, species and dates for sponsorship start and end. 
 
 <details>
-<summary>Custom data models used:</summary>
-Show the model schema:
-![datamodels used](#)
+<summary>Show the model schema</summary>
+
+![datamodels used](readmefiles/data-schema.png)
+
 </details>
 
 <br>

@@ -141,12 +141,6 @@ class OrderItem(models.Model):
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
 
-    # def get_total_item_price(self):
-    #     return self.quantity * self.item.price
-
-    # def get_grand_total(self):
-    #     return self.get_total_item_price()
-
     def save(self, *args, **kwargs):
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
