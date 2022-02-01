@@ -32,11 +32,6 @@ def webhook(request):
     except Exception as e:
         return HttpResponse(content=e, status=400)
 
-    # comment out everything below the status 200, uncomment these two lines
-    # and send a test event from stripe to ensure the webhooks are working
-    # print('Success')
-    # return HttpResponse(status=200)
-
     # Set up a webhook handler by creating an instance of it
     handler = StripeWH_Handler(request)
 
