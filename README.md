@@ -120,12 +120,23 @@ Show the model schema:
 
 ### Business Model
 
-Ridley Me This is a not-for-profit e-commerce site. It allows users to sponsor turtles for a year, purchase merchandise and give monetary donations. 100% of cost is a profit which goes straight towards the conservation of the turtles. The delivery cost of the certificate and gift is covered by the user. There is a small profit made off of the merchandise, which goes straight towards conserving the turtles. Once again the delivery cost is covered by the user. There is nothing delivered when users make a donation, but by taking a 'delivery fee' for these transactions all processing fees are covered.
+Ridley Me This is a not-for-profit e-commerce site. It allows users to sponsor turtles for a year, purchase merchandise and give monetary donations. These are all one off payments using Stripe. 100% of cost is a profit which goes straight towards the conservation of the turtles. The delivery cost of the certificate and gift is covered by the user. There is a small profit made off of the merchandise, which goes straight towards conserving the turtles. Once again the delivery cost is covered by the user. There is nothing delivered when users make a donation, but by taking a 'delivery fee' for these transactions all processing fees are covered. The target audience is quite niche, but as global interest in wildlife, welfare and the environment increases so would business for an e-commerce store like this.l
 
 
 ### Facebook Campaign
 
-As Facebook tends to remove pages it believes to not be a functional business page, I opted to create a mock up of a would be Facebook page.
+As Facebook tends to remove pages it believes to not be a functional business page, I opted to create a mock up of a would be Facebook page.  
+Facebook is an incredible social tool and is a great platform to boost and promote business.  
+Ridley Me This would keep followers up to date on latest discoveries and work they were doing, as well as promoting the items on offer for sale.   
+Being able to communi cate with your audience is a great way to boost sales and interest in your website.  
+
+<details>
+
+<summary>See the facebook wireframe</summary>
+
+![facebook business page wireframe](readmefiles/facebook.png)
+
+</details>
 
 
 <hr>

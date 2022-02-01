@@ -35,20 +35,6 @@ class Category(models.Model):
         return self.friendly_name
 
 
-class TurtleSpecies(models.Model):
-    class Meta:
-        verbose_name_plural = 'Species'
-
-    name = models.CharField(max_length=200)
-    friendly_name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
-
-
 class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     sku = models.CharField(max_length=254, null=False, blank=False)
@@ -61,10 +47,6 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     slug = models.SlugField()
-    # species = models.CharField(choices=SPECIES, max_length=10, null=True,
-    # blank=True)
-    # sponsored_status = models.BooleanField(default=False, null=True,
-    # blank=True)
 
     def __str__(self):
         return self.title
@@ -168,7 +150,6 @@ class OrderItem(models.Model):
     def save(self, *args, **kwargs):
         self.orderitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
-
 
 # code credit
 # https://stackoverflow.com/questions/2199013/how-can-my-django-model-
